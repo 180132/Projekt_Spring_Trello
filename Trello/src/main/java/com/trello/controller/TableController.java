@@ -22,7 +22,6 @@ import com.trello.service.TableServiceImpl;
 
 @Controller
 public class TableController extends AbstractController{
-
 	@Autowired
 	private TableServiceImpl tableService;
 	
@@ -62,3 +61,4 @@ public class TableController extends AbstractController{
 		return model;
 	}
 }
+

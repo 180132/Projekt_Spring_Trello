@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.trello.model.Table;
+import com.trello.model.Table.TableVisibility;
 import com.trello.service.TableService;
 import com.trello.service.TableServiceImpl;
 
@@ -27,15 +28,14 @@ public class TableController extends AbstractController{
 	
 	@RequestMapping(value="/viewTables")
 	public ModelAndView viewTables(Model model) {
-		Map<String, Object> map = 
-				new HashMap();
+		Map<String, Object> map = new HashMap();
 		map.put("tables", (List<Table>)tableService.getTables());
 		return new ModelAndView("tableList", map);
 	}
 	
 	@RequestMapping(value="/addTable")
 	public String addTable(Model model) {
-		tableService.addTable(new Table("tablica"));
+		tableService.addTable(new Table("tablica", TableVisibility.PRIVATE));
 		return "redirect:/viewTables";
 	}
 	

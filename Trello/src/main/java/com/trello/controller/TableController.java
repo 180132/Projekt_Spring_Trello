@@ -17,7 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.trello.model.Table;
-import com.trello.service.TableService;
+import com.trello.model.Table.TableVisibility;
+import com.trello.model.TableList;
 import com.trello.service.TableServiceImpl;
 
 @Controller
@@ -27,15 +28,14 @@ public class TableController extends AbstractController{
 	
 	@RequestMapping(value="/viewTables")
 	public ModelAndView viewTables(Model model) {
-		Map<String, Object> map = 
-				new HashMap();
+		Map<String, Object> map = new HashMap();
 		map.put("tables", (List<Table>)tableService.getTables());
 		return new ModelAndView("tableList", map);
 	}
 	
 	@RequestMapping(value="/addTable")
 	public String addTable(Model model) {
-		tableService.addTable(new Table("tablica"));
+		tableService.addTable(new Table("tablica", TableVisibility.PRIVATE));
 		return "redirect:/viewTables";
 	}
 	
@@ -48,6 +48,24 @@ public class TableController extends AbstractController{
 	@RequestMapping(value="/deleteTable/{id}", method = RequestMethod.GET)
 	public String deleteTable(@PathVariable("id") int id) {
 		tableService.deleteTable(id);
+		return "redirect:/viewTables";
+	}
+	
+	@RequestMapping(value="/addList/{tableId}")
+	public String addList(@PathVariable("tableId") int tableId, Model model) {
+		tableService.addList(tableId, new TableList("lista"));
+		return "redirect:/viewTables";
+	}
+	
+	@RequestMapping(value="/editList/{tableId, listId}", method = RequestMethod.GET)
+	public String addList(@PathVariable("tableId") int tableId, @PathVariable("listId") int listId) {
+		tableService.editList(tableId, listId, "edytowana lista");
+		return "redirect:/viewTables";
+	}
+	
+	@RequestMapping(value="/deleteList/{tableId, listId}", method = RequestMethod.GET)
+	public String deleteList(@PathVariable("tableId") int tableId, @PathVariable("listId") int listId) {
+		tableService.deleteList(tableId, listId);
 		return "redirect:/viewTables";
 	}
 	

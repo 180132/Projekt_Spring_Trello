@@ -2,13 +2,19 @@ package com.trello.service;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.trello.model.Table;
+import com.trello.model.TableList;
 
 public class TableServiceImpl implements TableService{
-	private static List<Table> tables;
-	private ListService listService = new ListServiceImpl();
+	private List<Table> tables;
 	
-	static {
+	TableServiceImpl() {
 		tables  = new LinkedList<Table>();
 	}
 	
@@ -36,5 +42,17 @@ public class TableServiceImpl implements TableService{
 		{
 			tables.get(id).setName(name);
 		}
+	}			
+		
+	public void addList(int tableId, TableList list) {
+		tables.get(tableId).addList(list);
+	}
+
+	public void editList(int tableId, int listId, String name) {
+		tables.get(tableId).editList(listId, name);
+	}
+	
+	public void deleteList(int tableId, int listId) {
+		tables.get(tableId).deleteList(listId);
 	}
 }

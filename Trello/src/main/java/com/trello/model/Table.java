@@ -1,10 +1,13 @@
 package com.trello.model;
 
-public class Table {
-	
+import java.util.ArrayList;
+import java.util.List;
+
+public class Table {	
 	private String name;
 	private TableVisibility visibility;
 	private boolean starred; //tablice oznaczone jako star sa pokazywane na samej górze.
+	private ArrayList<TableList> lists;
 	
 	public enum TableVisibility {
 		PRIVATE,
@@ -16,6 +19,7 @@ public class Table {
 		super();
 		this.name = name;
 		this.visibility = visibility;
+		this.lists = new ArrayList<TableList>();
 	}
 
 	public String getName() {
@@ -40,5 +44,17 @@ public class Table {
 
 	public void setStarred(boolean starred) {
 		this.starred = starred;
-	}	
+	}
+
+	public void addList(TableList list) {
+		lists.add(list);
+	}
+
+	public void editList(int listId, String name) {
+		lists.get(listId).setName(name);
+	}
+	
+	public void deleteList(int listId) {
+		lists.remove(listId);
+	}
 }

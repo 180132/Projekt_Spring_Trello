@@ -10,14 +10,14 @@
 <body>
 Lists of ${tableName} board:
 </br>
-	<a href="/Trello/addList/${tableIndex}/nowa_lista"><button>Add</button></a>
+	<a href="/Trello/addList/${tableIndex}/${tableName}/nowa_lista"><button>Add</button></a>
 </br>
 	<c:forEach items="${requestScope.lists}" var="list" varStatus="loopCounter">
 	
       	<tr>
       	<td><c:out value="${list.name}"/></td>
-      	<a href="/Trello/deleteList/${tableIndex}/${loopCounter.index}"><button>Delete</button></a>
         </tr>
+      	<a href="/Trello/deleteList/${tableIndex}/${tableName}/${loopCounter.index}"><button>Delete</button></a>
         </br>
 	</c:forEach>
 </body>

@@ -60,10 +60,10 @@ public class TableController extends AbstractController{
              return new ModelAndView("tablePage", map);
      }
     
-     @RequestMapping(value="/addList/{tableIndex}/{tableListName}", method = RequestMethod.GET)
-     public String addList(@PathVariable("tableIndex") int tableIndex, @PathVariable("tableListName") String tableListName) {
+     @RequestMapping(value="/addList/{tableIndex}/{tableName}/{tableListName}", method = RequestMethod.GET)
+     public String addList(@PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName, @PathVariable("tableListName") String tableListName) {
              tableService.addListToTable(tableIndex, new TableList(tableListName));
-             return "redirect:/tablePage/" + tableIndex;
+             return "redirect:/tablePage/" + tableIndex + "/" + tableName;
      }
 	
 	@RequestMapping(value="/editList/{tableIndex}/{listIndex}/{newName}", method = RequestMethod.GET)
@@ -74,10 +74,10 @@ public class TableController extends AbstractController{
 		return "redirect:/tablePage/" + tableIndex;
 	}
 	
-	@RequestMapping(value="/deleteList/{tableIndex}/{listIndex}", method = RequestMethod.GET)
-	public String deleteList(@PathVariable("tableIndex") int tableIndex, @PathVariable("listIndex") int listIndex) {
+	@RequestMapping(value="/deleteList/{tableIndex}/{tableName}/{listIndex}", method = RequestMethod.GET)
+	public String deleteList(@PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName, @PathVariable("listIndex") int listIndex) {
 		tableService.deleteList(tableIndex, listIndex);
-		return "redirect:/tablePage/" + tableIndex;
+		return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	}
 	
 	@Override

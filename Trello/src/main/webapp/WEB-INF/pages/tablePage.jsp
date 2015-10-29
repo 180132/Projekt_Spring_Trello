@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-Lists of ${tableName} board:
+Lists of "${tableName}" board:
 </br>
-	<a href="/Trello/addList/${tableIndex}/${tableName}/nowa_lista"><button>Add</button></a>
+	<a href="/Trello/addList/${tableIndex}/${tableName}/List name"><button>Add list</button></a>
 </br>
 	<c:forEach items="${requestScope.lists}" var="list" varStatus="loopCounter">
 	

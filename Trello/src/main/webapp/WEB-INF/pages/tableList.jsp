@@ -10,10 +10,11 @@
 <body>
 Boards:
 </br>
-	<a href="/Trello/addTable/NDSADA"><button>Add</button></a>
+	<a href="/Trello/addTable/Board name">
+		<button>Add board</button>
+	</a>
 </br>
 	<c:forEach items="${requestScope.tables}" var="table" varStatus="loopCounter">
-	
       	<tr>
       	<td><c:out value="${table.name}"/></td>
         </tr>

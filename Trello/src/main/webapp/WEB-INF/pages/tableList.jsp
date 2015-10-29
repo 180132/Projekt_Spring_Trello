@@ -8,16 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-Tablica:</br>
+Boards:
+</br>
+	<a href="/Trello/addTable/NDSADA"><button>Add</button></a>
+</br>
 	<c:forEach items="${requestScope.tables}" var="table" varStatus="loopCounter">
 	
       	<tr>
       	<td><c:out value="${table.name}"/></td>
-      	<a href="/Trello/tablePage/${table.id}"><button>Go to</button></a>
         </tr>
+      	<a href="/Trello/tablePage/${loopCounter.index}/${table.name}"><button>Go to</button></a>
+      	<a href="/Trello/deleteTable/${loopCounter.index}"><button>Delete</button></a>
         </br>
 	</c:forEach>
-	<a href="/Trello/addTable/"><button>Dodaj</button></a>
 
 </body>
 </html>

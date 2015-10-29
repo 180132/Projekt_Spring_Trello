@@ -29,30 +29,31 @@ public class TableServiceImpl implements TableService{
 		tables.add(t);
 	}
 	
-	public void deleteTable(int id)
+	public void deleteTable(int tableIndex)
 	{
-		if(id>=0 && id<tables.size())
+		if(tableIndex>=0 && tableIndex<tables.size())
 		{
-			tables.remove(id);
+			tables.remove(tableIndex);
 		}
 	}
-	public void editTable(int id, String name)
+	
+	public void editTable(int tableIndex, String name)
 	{
-		if(id>=0 && id<tables.size())
+		if(tableIndex>=0 && tableIndex<tables.size())
 		{
-			tables.get(id).setName(name);
+			tables.get(tableIndex).setName(name);
 		}
 	}			
 		
-	public void addListToTable(int tableId, TableList list) {
-		tables.get(tableId).addList(list);
+	public void addListToTable(int tableIndex, TableList list) {
+		tables.get(tableIndex).addList(list);
 	}
 
-	public void editList(int tableId, int listId, String name) {
-		tables.get(tableId).editList(listId, name);
+	public void editList(int tableIndex, int listIndex, String name) {
+		tables.get(tableIndex).editList(listIndex, name);
 	}
 	
-	public void deleteList(int tableId, int listId) {
-		tables.get(tableId).deleteList(listId);
+	public void deleteList(int tableIndex, int listIndex) {
+		tables.get(tableIndex).deleteList(listIndex);
 	}
 }

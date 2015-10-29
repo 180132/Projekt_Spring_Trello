@@ -33,51 +33,51 @@ public class TableController extends AbstractController{
 		return new ModelAndView("tableList", map);
 	}
 	
-	@RequestMapping(value="/addTable")
-	public String addTable(Model model) {
-		tableService.addTable(new Table(tableService.getTables().size(),"tablica", TableVisibility.PRIVATE));
+	@RequestMapping(value="/addTable/{tableName}")
+	public String addTable(@PathVariable("tableName") String tableName) {
+		tableService.addTable(new Table(tableName, TableVisibility.PRIVATE));
 		return "redirect:/viewTables";
 	}
 	
-	@RequestMapping(value="/editTable/{id}", method = RequestMethod.GET)
-	public String addTable(@PathVariable("id") int id) {
-		tableService.editTable(id, "edytowana tablica");
+	@RequestMapping(value="/editTable/{index}", method = RequestMethod.GET)
+	public String addTable(@PathVariable("index") int index) {
+		tableService.editTable(index, "edytowana tablica");
 		return "redirect:/viewTables";
 	}
 	
-	@RequestMapping(value="/deleteTable/{id}", method = RequestMethod.GET)
-	public String deleteTable(@PathVariable("id") int id) {
-		tableService.deleteTable(id);
+	@RequestMapping(value="/deleteTable/{index}", method = RequestMethod.GET)
+	public String deleteTable(@PathVariable("index") int index) {
+		tableService.deleteTable(index);
 		return "redirect:/viewTables";
 	}
 	
-	 @RequestMapping(value="/tablePage/{tableId}")
-     public ModelAndView tablePage(Model model, @PathVariable("tableId") int tableId) {
-             Map<String, Object> map =
-                             new HashMap();
-             map.put("lists", (List<TableList>)tableService.getTables().get(tableId).getLists());
-             model.addAttribute("tableId", tableId);
+	 @RequestMapping(value="/tablePage/{tableIndex}/{tableName}")
+     public ModelAndView tablePage(Model model, @PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName) {
+             Map<String, Object> map = new HashMap();
+             map.put("lists", (List<TableList>)tableService.getTables().get(tableIndex).getLists());
+             model.addAttribute("tableIndex", tableIndex);
+             model.addAttribute("tableName", tableName);
              return new ModelAndView("tablePage", map);
      }
     
-     @RequestMapping(value="/addList/{tableId}/{tableListName}", method = RequestMethod.GET)
-     public String addList(@PathVariable("tableId") int tableId, @PathVariable("tableListName") String tableListName) {
-             tableService.addListToTable(tableId, new TableList(tableListName, tableService.getTables().get(tableId).getLists().size()));
-             return "redirect:/tablePage/" + tableId;
+     @RequestMapping(value="/addList/{tableIndex}/{tableListName}", method = RequestMethod.GET)
+     public String addList(@PathVariable("tableIndex") int tableIndex, @PathVariable("tableListName") String tableListName) {
+             tableService.addListToTable(tableIndex, new TableList(tableListName));
+             return "redirect:/tablePage/" + tableIndex;
      }
 	
-	@RequestMapping(value="/editList/{tableId}/{listId}/{newName}", method = RequestMethod.GET)
-	public String editList(@PathVariable("tableId") int tableId,
-							@PathVariable("listId") int listId,
+	@RequestMapping(value="/editList/{tableIndex}/{listIndex}/{newName}", method = RequestMethod.GET)
+	public String editList(@PathVariable("tableIndex") int tableIndex,
+							@PathVariable("listIndex") int listIndex,
 							@PathVariable("newName") String newListName) {
-		tableService.editList(tableId, listId, newListName);
-		return "redirect:/tablePage/" + tableId;
+		tableService.editList(tableIndex, listIndex, newListName);
+		return "redirect:/tablePage/" + tableIndex;
 	}
 	
-	@RequestMapping(value="/deleteList/{tableId, listId}", method = RequestMethod.GET)
-	public String deleteList(@PathVariable("tableId") int tableId, @PathVariable("listId") int listId) {
-		tableService.deleteList(tableId, listId);
-		return "redirect:/tablePage/" + tableId;
+	@RequestMapping(value="/deleteList/{tableIndex}/{listIndex}", method = RequestMethod.GET)
+	public String deleteList(@PathVariable("tableIndex") int tableIndex, @PathVariable("listIndex") int listIndex) {
+		tableService.deleteList(tableIndex, listIndex);
+		return "redirect:/tablePage/" + tableIndex;
 	}
 	
 	@Override

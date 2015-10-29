@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Table {
-	private int id;
 	private String name;
 	private TableVisibility visibility;
 	private boolean starred; //tablice oznaczone jako star sa pokazywane na samej górze.
@@ -16,9 +15,8 @@ public class Table {
 		PUBLIC
 	}
 
-	public Table(int id, String name, TableVisibility visibility) {
+	public Table(String name, TableVisibility visibility) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.visibility = visibility;
 		this.lists = new ArrayList<TableList>();
@@ -52,12 +50,12 @@ public class Table {
 		lists.add(list);
 	}
 
-	public void editList(int listId, String name) {
-		lists.get(listId).setName(name);
+	public void editList(int listIndex, String name) {
+		lists.get(listIndex).setName(name);
 	}
 	
-	public void deleteList(int listId) {
-		lists.remove(listId);
+	public void deleteList(int listIndex) {
+		lists.remove(listIndex);
 	}
 
 	public List<TableList> getLists() {
@@ -66,13 +64,5 @@ public class Table {
 
 	public void setLists(List<TableList> lists) {
 		this.lists = lists;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 }

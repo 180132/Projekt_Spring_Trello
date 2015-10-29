@@ -2,10 +2,12 @@ package com.trello.model;
 
 public class TableList {
 	public String name;
+	public int id;
 
-	public TableList(String name) {
+	public TableList(String name, int id) {
 		super();
 		this.name = name;
+		this.id = id;
 	}
 
 	public String getName() {
@@ -15,4 +17,14 @@ public class TableList {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 }

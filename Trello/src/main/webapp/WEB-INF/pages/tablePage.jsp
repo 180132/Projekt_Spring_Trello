@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,15 +9,13 @@
 </head>
 <body>
 Tablica:</br>
-	<c:forEach items="${requestScope.tables}" var="table" varStatus="loopCounter">
+	<c:forEach items="${requestScope.lists}" var="list" varStatus="loopCounter">
 	
       	<tr>
-      	<td><c:out value="${table.name}"/></td>
-      	<a href="/Trello/tablePage/${table.id}"><button>Go to</button></a>
+      	<td><c:out value="${list.name}"/></td>
         </tr>
         </br>
 	</c:forEach>
-	<a href="/Trello/addTable/"><button>Dodaj</button></a>
-
+	<a href="/Trello/addList/${tableId }/nowa_lista"><button>Dodaj</button></a>
 </body>
 </html>

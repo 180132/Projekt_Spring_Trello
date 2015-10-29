@@ -44,7 +44,7 @@ public class TableServiceImpl implements TableService{
 		}
 	}			
 		
-	public void addList(int tableId, TableList list) {
+	public void addListToTable(int tableId, TableList list) {
 		tables.get(tableId).addList(list);
 	}
 

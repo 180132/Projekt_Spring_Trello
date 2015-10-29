@@ -35,7 +35,7 @@ public class TableController extends AbstractController{
 	
 	@RequestMapping(value="/addTable")
 	public String addTable(Model model) {
-		tableService.addTable(new Table("tablica", TableVisibility.PRIVATE));
+		tableService.addTable(new Table(tableService.getTables().size(),"tablica", TableVisibility.PRIVATE));
 		return "redirect:/viewTables";
 	}
 	
@@ -51,22 +51,33 @@ public class TableController extends AbstractController{
 		return "redirect:/viewTables";
 	}
 	
-	@RequestMapping(value="/addList/{tableId}")
-	public String addList(@PathVariable("tableId") int tableId, Model model) {
-		tableService.addList(tableId, new TableList("lista"));
-		return "redirect:/viewTables";
-	}
+	 @RequestMapping(value="/tablePage/{tableId}")
+     public ModelAndView tablePage(Model model, @PathVariable("tableId") int tableId) {
+             Map<String, Object> map =
+                             new HashMap();
+             map.put("lists", (List<TableList>)tableService.getTables().get(tableId).getLists());
+             model.addAttribute("tableId", tableId);
+             return new ModelAndView("tablePage", map);
+     }
+    
+     @RequestMapping(value="/addList/{tableId}/{tableListName}", method = RequestMethod.GET)
+     public String addList(@PathVariable("tableId") int tableId, @PathVariable("tableListName") String tableListName) {
+             tableService.addListToTable(tableId, new TableList(tableListName, tableService.getTables().get(tableId).getLists().size()));
+             return "redirect:/tablePage/" + tableId;
+     }
 	
-	@RequestMapping(value="/editList/{tableId, listId}", method = RequestMethod.GET)
-	public String addList(@PathVariable("tableId") int tableId, @PathVariable("listId") int listId) {
-		tableService.editList(tableId, listId, "edytowana lista");
-		return "redirect:/viewTables";
+	@RequestMapping(value="/editList/{tableId}/{listId}/{newName}", method = RequestMethod.GET)
+	public String editList(@PathVariable("tableId") int tableId,
+							@PathVariable("listId") int listId,
+							@PathVariable("newName") String newListName) {
+		tableService.editList(tableId, listId, newListName);
+		return "redirect:/tablePage/" + tableId;
 	}
 	
 	@RequestMapping(value="/deleteList/{tableId, listId}", method = RequestMethod.GET)
 	public String deleteList(@PathVariable("tableId") int tableId, @PathVariable("listId") int listId) {
 		tableService.deleteList(tableId, listId);
-		return "redirect:/viewTables";
+		return "redirect:/tablePage/" + tableId;
 	}
 	
 	@Override

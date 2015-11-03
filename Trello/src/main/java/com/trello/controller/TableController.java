@@ -35,7 +35,7 @@ public class TableController extends AbstractController{
 	
 	@RequestMapping(value="/addTable/{tableName}")
 	public String addTable(@PathVariable("tableName") String tableName) {
-		tableService.addTable(new Table(tableName, TableVisibility.PRIVATE));
+		tableService.addTable(new Table(tableName + " " + tableService.getTables().size(), TableVisibility.PRIVATE));
 		return "redirect:/viewTables";
 	}
 	
@@ -62,7 +62,7 @@ public class TableController extends AbstractController{
     
      @RequestMapping(value="/addList/{tableIndex}/{tableName}/{tableListName}", method = RequestMethod.GET)
      public String addList(@PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName, @PathVariable("tableListName") String tableListName) {
-             tableService.addListToTable(tableIndex, new TableList(tableListName));
+             tableService.addListToTable(tableIndex, new TableList(tableListName + " " + tableService.getTables().get(tableIndex).getLists().size()));
              return "redirect:/tablePage/" + tableIndex + "/" + tableName;
      }
 	

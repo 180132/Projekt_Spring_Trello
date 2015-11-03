@@ -9,34 +9,39 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.support.XmlWebApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml")
 @WebAppConfiguration
-@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" )
 public class TableControllerTest {
 
     private MockMvc mockMvc;
-
+    
+    @Autowired
+    WebApplicationContext wac;
+    
     @Before
     public void setup() {
-    	XmlWebApplicationContext context = new XmlWebApplicationContext();
-		//context.setConfigLocations("file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml");
-        mockMvc = MockMvcBuilders.standaloneSetup(context).build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).dispatchOptions(true).build();
     }
 
     @Test
-    public void testViewTables() throws Exception {
-		mockMvc.perform(get("/addTable"))
-            .andExpect(status().isOk());
-            //.andExpect(forwardedUrl("WEB-INF/pages/tableList.jsp"))
-            //.andExpect(model().attributeExists("tables"));
+    public void testviewTables() throws Exception {
+    	MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/viewTables");
+		ResultActions result = mockMvc.perform(request);
+		result.andExpect(status().isOk());
+		result.andExpect(model().attributeExists("tables"));
     }
 }
 

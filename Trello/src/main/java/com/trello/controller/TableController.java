@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,8 @@ public class TableController extends AbstractController{
 	@Autowired
 	private TableServiceImpl tableService;
 	
+	private static final Logger logger = Logger.getLogger(TableController.class);
+	
 	@RequestMapping(value="/viewTables")
 	public ModelAndView viewTables(Model model) {
 		Map<String, Object> map = new HashMap();
@@ -36,6 +39,10 @@ public class TableController extends AbstractController{
 	@RequestMapping(value="/addTable/{tableName}")
 	public String addTable(@PathVariable("tableName") String tableName) {
 		tableService.addTable(new Table(tableName + " " + tableService.getTables().size(), TableVisibility.PRIVATE));
+				
+		if(logger.isDebugEnabled()){
+			logger.debug("getWelcome is executed!");
+		}
 		return "redirect:/viewTables";
 	}
 	

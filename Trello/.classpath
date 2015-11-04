@@ -29,5 +29,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Klys/git/Projekt_Spring_Trello/Trello/lib/logback-core-1.1.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

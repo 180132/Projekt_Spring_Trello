@@ -21,11 +21,16 @@ import com.trello.model.Table.TableVisibility;
 import com.trello.model.TableList;
 import com.trello.service.TableServiceImpl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 public class TableController extends AbstractController{
 	@Autowired
 	private TableServiceImpl tableService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(TableController.class);
+		 	
 	@RequestMapping(value="/viewTables")
 	public ModelAndView viewTables(Model model) {
 		Map<String, Object> map = new HashMap();
@@ -36,6 +41,11 @@ public class TableController extends AbstractController{
 	@RequestMapping(value="/addTable/{tableName}")
 	public String addTable(@PathVariable("tableName") String tableName) {
 		tableService.addTable(new Table(tableName + " " + tableService.getTables().size(), TableVisibility.PRIVATE));
+		
+		logger.debug("welcome() is executed, value {}", "mkyong");
+		
+		logger.error("This is Error message", new Exception("Testing"));
+		
 		return "redirect:/viewTables";
 	}
 	

@@ -12,14 +12,15 @@
 <body>
 	<form:form action="." modelAttribute="account">
 		<h1>Rejestracja nowego uzytkownika</h1>
-		<div>Nazwa uzytkownika: <form: input path="username" /></div>
-		<div>Haslo: <form: password path="password" /></div>
-		<div>Potwierdz haslo: <form: password path="confirmPassword" /></div>
-		<div>Adres e-mail: <form: input path="email" /></div>
-		<div>Imie: <form: input path="name" /></div>
-		<div>Nazwisko: <form: input path="surename" /></div>
-		<div><form: checkbox id="marketingOk" path="marketingOk" />Pierdoly</div>
-		<div><form: checkbox id="acceptTerms" path="acceptTerms" />Zgadzam sie ze jestem debilem</div>
+		
+		<div>Nazwa uzytkownika: <form:input path="username" /></div>
+		<div>Haslo: <form:password path="password" /></div>
+		<div>Potwierdz haslo: <form:password path="confirmPassword" /></div>
+		<div>Adres e-mail: <form:input path="email" /></div>
+		<div>Imie: <form:input path="firstName" /></div>
+		<div>Nazwisko: <form:input path="lastName" /></div>
+		<div><form:checkbox id="marketingOk" path="marketingOk" />Pierdoly</div>
+		<div><form:checkbox id="acceptTerms" path="acceptTerms" />Zgadzam sie ze jestem debilem</div>
 		<div><input type="submit" value="Zarejestruj" /></div>
 		
 	</form:form>

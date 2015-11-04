@@ -3,10 +3,8 @@ package com.trello.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
-
 import com.trello.model.Table;
 import com.trello.model.Table.TableVisibility;
 import com.trello.model.TableList;
 import com.trello.service.TableServiceImpl;
 
-import ch.qos.logback.core.status.Status;
 
 @Controller
 public class TableController extends AbstractController{
@@ -38,6 +34,10 @@ public class TableController extends AbstractController{
 	@RequestMapping(value="/addTable/{tableName}")
 	public String addTable(@PathVariable("tableName") String tableName) {
 		tableService.addTable(new Table(tableName + " " + tableService.getTables().size(), TableVisibility.PRIVATE));
+		
+		if(logger.isDebugEnabled()){
+			logger.debug("\"" + tableName + "\" board has been successfully added.");
+		}
 		return "redirect:/viewTables";
 	}
 	
@@ -50,6 +50,10 @@ public class TableController extends AbstractController{
 	@RequestMapping(value="/deleteTable/{index}", method = RequestMethod.GET)
 	public String deleteTable(@PathVariable("index") int index) {
 		tableService.deleteTable(index);
+		
+		if(logger.isDebugEnabled()){
+			logger.debug("Board no. " + index + " has been successfully deleted.");
+		}
 		return "redirect:/viewTables";
 	}
 	

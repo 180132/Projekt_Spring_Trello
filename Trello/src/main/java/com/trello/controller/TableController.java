@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,9 +40,9 @@ public class TableController extends AbstractController{
 	@RequestMapping(value="/addTable/{tableName}")
 	public String addTable(@PathVariable("tableName") String tableName) {
 		tableService.addTable(new Table(tableName + " " + tableService.getTables().size(), TableVisibility.PRIVATE));
-				
+		
 		if(logger.isDebugEnabled()){
-			logger.debug("getWelcome is executed!");
+			logger.debug("\"" + tableName + "\" board has been successfully added.");
 		}
 		return "redirect:/viewTables";
 	}
@@ -55,6 +56,10 @@ public class TableController extends AbstractController{
 	@RequestMapping(value="/deleteTable/{index}", method = RequestMethod.GET)
 	public String deleteTable(@PathVariable("index") int index) {
 		tableService.deleteTable(index);
+		
+		if(logger.isDebugEnabled()){
+			logger.debug("Board no. " + index + " has been successfully deleted.");
+		}
 		return "redirect:/viewTables";
 	}
 	

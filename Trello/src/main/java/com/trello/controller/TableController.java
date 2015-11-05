@@ -30,10 +30,10 @@ public class TableController extends AbstractController{
 	
 	private static final Logger log = LoggerFactory.getLogger(TableController.class);
 	
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@RequestMapping(value = "/viewTables", method = RequestMethod.POST)
 	public String postRegistrationForm(AccountForm form){
 		log.info("Create registration: {}", form);
-		return "redirect:registration_ok";
+		return "redirect:/viewTables";
 	}
 	
 	@RequestMapping(value = "/users", method=RequestMethod.GET)

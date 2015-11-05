@@ -9,21 +9,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-	<form:form action="." modelAttribute="account">
-		<h1>Rejestracja nowego uzytkownika</h1>
-		
-		<div>Nazwa uzytkownika: <form:input path="username" /></div>
-		<div>Haslo: <form:password path="password" /></div>
-		<div>Potwierdz haslo: <form:password path="confirmPassword" /></div>
-		<div>Adres e-mail: <form:input path="email" /></div>
-		<div>Imie: <form:input path="firstName" /></div>
-		<div>Nazwisko: <form:input path="lastName" /></div>
-		<div><form:checkbox id="marketingOk" path="marketingOk" />Pierdoly</div>
-		<div><form:checkbox id="acceptTerms" path="acceptTerms" />Zgadzam sie ze jestem debilem</div>
-		<div><input type="submit" value="Zarejestruj" /></div>
-		
-	</form:form>
+<body style = "background-color: #3385FF">
+	<center><div style = "background-color: blue;
+						color: white;
+						text-algin: center;
+						width: 600px;
+						height: 100%;
+						border-radius: 10px;">
+		<form:form action="." modelAttribute="account">
+			<h1>Rejestracja nowego uzytkownika</h1>
+			<div style = "width: 300px;">
+				<div>Nazwa uzytkownika: <form:input path="username" /></div>
+				<div>Haslo: <form:password path="password" /></div>
+				<div>Potwierdz haslo: <form:password path="confirmPassword" /></div>
+				<div>Adres e-mail: <form:input path="email" /></div>
+				<div>Imie: <form:input path="firstName" /></div>
+				<div>Nazwisko: <form:input path="lastName" /></div>
+			
+				<div><form:checkbox id="marketingOk" path="marketingOk" />Wysylaj mi informacje o produkcie</div>
+				<div><form:checkbox id="acceptTerms" path="acceptTerms" />Zgadzam sie z warunkami korzystania z serwisu</div>
+				<div><input type="submit" value="Zarejestruj" /></div>
+			</div>
+			
+		</form:form>
+		</br>
+	</div></center>
 
 </body>
 </html>

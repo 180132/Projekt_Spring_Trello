@@ -2,6 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:message var="msgAllFieldsRequired" code="newUserRegistration.message.allFieldsRequired" />
+<spring:message var="pageTitle" code="newUserRegistration.pageTitle" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,12 +23,12 @@
 		<form:form action="." modelAttribute="account">
 			<h1>Rejestracja nowego uzytkownika</h1>
 			<div style = "width: 300px;">
-				<div>Nazwa uzytkownika: <form:input path="username" /></div>
-				<div>Haslo: <form:password path="password" /></div>
-				<div>Potwierdz haslo: <form:password path="confirmPassword" /></div>
-				<div>Adres e-mail: <form:input path="email" /></div>
-				<div>Imie: <form:input path="firstName" /></div>
-				<div>Nazwisko: <form:input path="lastName" /></div>
+				<div><spring:message code="newUserRegistration.label.username" /><form:input path="username" /></div>
+				<div><spring:message code="newUserRegistration.label.password" /><form:password path="password" /></div>
+				<div><spring:message code="newUserRegistration.label.confirmPassword" /><form:password path="confirmPassword" /></div>
+				<div><spring:message code="newUserRegistration.label.email" /><form:input path="email" /></div>
+				<div><spring:message code="newUserRegistration.label.firstName" /><form:input path="firstName" /></div>
+				<div><spring:message code="newUserRegistration.label.lastName" /><form:input path="lastName" /></div>
 			
 				<div><form:checkbox id="marketingOk" path="marketingOk" />Wysylaj mi informacje o produkcie</div>
 				<div><form:checkbox id="acceptTerms" path="acceptTerms" />Zgadzam sie z warunkami korzystania z serwisu</div>

@@ -34,5 +34,13 @@
     
        <bean name="tableServiceImpl" 
 		class="com.trello.service.TableServiceImpl" />
+		
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		p:basename="classpath:/spring/messages" >
+		<property name="defaultEncoding" value="utf-8" />		
+	</bean>
+		
+		
 
 </beans>

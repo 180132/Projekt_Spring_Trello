@@ -3,11 +3,7 @@ package com.trello.service;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import com.trello.model.Card;
 import com.trello.model.Table;
 import com.trello.model.TableList;
 
@@ -55,5 +51,17 @@ public class TableServiceImpl implements TableService{
 	
 	public void deleteList(int tableIndex, int listIndex) {
 		tables.get(tableIndex).deleteList(listIndex);
+	}			
+	
+	public void addCardToList(int tableIndex, int listIndex, Card card) {
+		tables.get(tableIndex).addCard(listIndex, card);
+	}
+	
+	public void editCard(int tableIndex, int listIndex, int cardIndex, String name) {
+		tables.get(tableIndex).editCard(listIndex, cardIndex, name);
+	}
+	
+	public void deleteCard(int tableIndex, int listIndex, int cardIndex) {
+		tables.get(tableIndex).deleteCard(listIndex, cardIndex);
 	}
 }

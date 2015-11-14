@@ -3,6 +3,7 @@ package com.trello.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
+
+import com.trello.model.Card;
 import com.trello.model.Table;
 import com.trello.model.Table.TableVisibility;
 import com.trello.model.TableList;
@@ -74,8 +77,8 @@ public class TableController extends AbstractController{
      public String addList(@PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName, @PathVariable("tableListName") String tableListName) {
              tableService.addListToTable(tableIndex, new TableList(tableListName + " " + tableService.getTables().get(tableIndex).getLists().size()));
              return "redirect:/tablePage/" + tableIndex + "/" + tableName;
-     }
-	
+     }     
+     
 	@RequestMapping(value="/editList/{tableIndex}/{listIndex}/{newName}", method = RequestMethod.GET)
 	public String editList(@PathVariable("tableIndex") int tableIndex,
 							@PathVariable("listIndex") int listIndex,
@@ -89,6 +92,33 @@ public class TableController extends AbstractController{
 		tableService.deleteList(tableIndex, listIndex);
 		return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	}
+	
+	 @RequestMapping(value="/addCard/{tableIndex}/{tableName}/{listIndex}/{cardName}", method = RequestMethod.GET)
+     public String addCard(@PathVariable("tableIndex") int tableIndex,
+    		 			   @PathVariable("tableName") String tableName,
+    		 			   @PathVariable("listIndex") int listIndex,
+    		 			   @PathVariable("cardName") String cardName) {
+          tableService.addCardToList(tableIndex, listIndex, new Card(cardName + " " + tableService.getTables().get(tableIndex).getLists().get(listIndex).getCards().size()));
+          return "redirect:/tablePage/" + tableIndex + "/" + tableName;
+     }
+     
+	 @RequestMapping(value="/editCard/{tableIndex}/{listIndex}/{cardIndex}/{newName}", method = RequestMethod.GET)
+	 public String editCard(@PathVariable("tableIndex") int tableIndex,
+							@PathVariable("listIndex") int listIndex,
+							@PathVariable("cardIndex") int cardIndex,
+							@PathVariable("newName") String newName) {
+		 tableService.editCard(tableIndex, listIndex, cardIndex, newName);
+		 return "redirect:/tablePage/" + tableIndex;
+	 }
+	
+	 @RequestMapping(value="/deleteCard/{tableIndex}/{listIndex}/{cardIndex}/{tableName}", method = RequestMethod.GET)
+	 public String deleteCard(@PathVariable("tableIndex") int tableIndex,
+			 				  @PathVariable("listIndex") int listIndex,
+			 				  @PathVariable("listIndex") int cardIndex,
+			 				  @PathVariable("tableName") String tableName) {
+		 tableService.deleteCard(tableIndex, listIndex, cardIndex);
+		 return "redirect:/tablePage/" + tableIndex + "/" + tableName;
+	 }
 	
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,

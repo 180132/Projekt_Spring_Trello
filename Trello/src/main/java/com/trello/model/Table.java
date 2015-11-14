@@ -65,4 +65,16 @@ public class Table {
 	public void setLists(List<TableList> lists) {
 		this.lists = lists;
 	}
+
+	public void addCard(int listIndex, Card card) {
+		lists.get(listIndex).addCard(card);
+	}
+	
+	public void editCard(int listIndex, int cardIndex, String name) {
+		lists.get(listIndex).editCard(cardIndex, name);
+	}
+
+	public void deleteCard(int listIndex, int cardIndex) {
+		lists.get(listIndex).deleteCard(cardIndex);
+	}
 }

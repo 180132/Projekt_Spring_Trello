@@ -61,7 +61,7 @@ public class TableServiceImpl implements TableService{
 		tables.get(tableIndex).editCard(listIndex, cardIndex, name);
 	}
 	
-	public void deleteList(int tableIndex, int listIndex, int cardIndex) {
+	public void deleteCard(int tableIndex, int listIndex, int cardIndex) {
 		tables.get(tableIndex).deleteCard(listIndex, cardIndex);
 	}
 }

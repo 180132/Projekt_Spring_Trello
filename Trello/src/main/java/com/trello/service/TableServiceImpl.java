@@ -27,7 +27,7 @@ public class TableServiceImpl implements TableService{
 	public void addTable(Table t)
 	{
 		tables.add(t);
-		history.addActivity(ActivityType.TABLE_ADDITION, t.getName(), t.getVisibility());
+		history.addActivity(ActivityType.TABLE_ADDITION, t.getName());
 	}
 	
 	public void deleteTable(int tableIndex)

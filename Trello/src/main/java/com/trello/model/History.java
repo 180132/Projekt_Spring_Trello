@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class History {
 	private ArrayList<String> activities;
 	
+	public History() {
+		activities = new ArrayList<>();
+	}
+	
 	public enum ActivityType {
 		TABLE_ADDITION,
 		LIST_ADDITION,

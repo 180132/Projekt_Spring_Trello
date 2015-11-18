@@ -38,6 +38,13 @@ public class TableController extends AbstractController{
 		return new ModelAndView("tableList", map);
 	}
 	
+	@RequestMapping(value="/getHistory")
+	public ModelAndView getHistory(Model model) {
+		Map<String, Object> map = new HashMap();
+		map.put("history", (List<String>) tableService.getHistory().getActivities());
+		return new ModelAndView("tableList", map);
+	}
+	
 	@RequestMapping(value="/addTable/{tableName}")
 	public String addTable(@PathVariable("tableName") String tableName) {
 		tableService.addTable(new Table(tableName + " " + tableService.getTables().size(), TableVisibility.PRIVATE));

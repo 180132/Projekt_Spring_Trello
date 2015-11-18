@@ -9,9 +9,17 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.ScriptAssert;
 
+
+/*
 @ScriptAssert(
 		lang = "javascript",
 		script = "_this.confirmPassword.equals(_this.password)",
+		message = "account.password.mismatch.message")
+*/
+
+@ScriptAssert(
+		lang = "javascript",
+		script = "_this.confirmPassword != null && _this.confirmPassword.equals(_this.password)",
 		message = "account.password.mismatch.message")
 
 public class AccountForm {
@@ -64,8 +72,7 @@ public class AccountForm {
 		return email;
 	}
 	
-	@NotNull
-	@Size(min = 1, max = 50)
+
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}	

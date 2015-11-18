@@ -22,16 +22,26 @@
 						border-radius: 10px;">
 		<form:form action="users" modelAttribute="account">
 			<h1>Rejestracja nowego uzytkownika</h1>
+			<form:errors path="*">
+				<div id = "error_global"><spring:message code="error.global" /></div>
+			</form:errors>
 			<div style = "width: 300px;">
 				<div><spring:message code="newUserRegistration.label.username" /><form:input path="username" /></div>
+				<div id= "error_username"><form:errors path="username" htmlEscape="false" /></div>
 				<div><spring:message code="newUserRegistration.label.password" /><form:password path="password" /></div>
+				<div id = "error_password"><form:errors path="password" htmlEscape="false" /></div>
 				<div><spring:message code="newUserRegistration.label.confirmPassword" /><form:password path="confirmPassword" /></div>
+				<div id = "error_confirmPassword"><form:errors path="confirmPassword" htmlEscape="false" /></div>
 				<div><spring:message code="newUserRegistration.label.email" /><form:input path="email" /></div>
+				<div id = "error_email"><form:errors path="email" htmlEscape="false" /></div>
 				<div><spring:message code="newUserRegistration.label.firstName" /><form:input path="firstName" /></div>
+				<div id = "error_firstName"><form:errors path="firstName" htmlEscape="false" /></div>
 				<div><spring:message code="newUserRegistration.label.lastName" /><form:input path="lastName" /></div>
+				<div id= "error_lastName"><form:errors path="lastName" htmlEscape="false" /></div>
 			
 				<div><form:checkbox id="marketingOk" path="marketingOk" />Wysylaj mi informacje o produkcie</div>
 				<div><form:checkbox id="acceptTerms" path="acceptTerms" />Zgadzam sie z warunkami korzystania z serwisu</div>
+				<div id = "error_acceptTerms"><form:errors path="acceptTerms" htmlEscape="false" /></div>
 				<div><input type="submit" value="Zarejestruj" /></div>
 			</div>
 			

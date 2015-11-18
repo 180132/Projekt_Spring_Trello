@@ -77,4 +77,8 @@ public class TableServiceImpl implements TableService{
 		history.addActivity(ActivityType.CARD_DELETION, tables.get(tableIndex).getName(), tables.get(tableIndex).getLists().get(listIndex).getName(), tables.get(tableIndex).getLists().get(listIndex).getCards().get(cardIndex).getName());
 		tables.get(tableIndex).deleteCard(listIndex, cardIndex);
 	}
+
+	public History getHistory() {
+		return history;
+	}
 }

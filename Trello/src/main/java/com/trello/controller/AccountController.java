@@ -27,7 +27,7 @@ public class AccountController extends AbstractController{
 		return new ModelAndView("registrationForm");
 	}
 	
-	@RequestMapping(value = "/viewTables", method = RequestMethod.POST)
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
 	public String postRegistrationForm(AccountForm form){
 		log.info("Create registration: {}", form);
 		return "redirect:/viewTables";

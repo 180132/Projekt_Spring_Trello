@@ -20,7 +20,7 @@
 						width: 600px;
 						height: 100%;
 						border-radius: 10px;">
-		<form:form action="." modelAttribute="account">
+		<form:form action="users" modelAttribute="account">
 			<h1>Rejestracja nowego uzytkownika</h1>
 			<div style = "width: 300px;">
 				<div><spring:message code="newUserRegistration.label.username" /><form:input path="username" /></div>

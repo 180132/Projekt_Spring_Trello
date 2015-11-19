@@ -26,6 +26,12 @@
 						<center>ADD Board</center>
 				</div>
 			</a>
+			<aside style="float:right; width:35%;">
+			<h3>Historia</h3>
+				<c:forEach items="${requestScope.history}" var="event" varStatus="loopCounter">
+					<c:out value="${event}"/><br/>
+				</c:forEach>
+			</aside>
 			<section>
 				<c:forEach items="${requestScope.tables}" var="table" varStatus="loopCounter">
 					<div style = "width: 210px;
@@ -46,11 +52,5 @@
 					</div>
 				</c:forEach>
 			</section>
-			<aside style="float:right; width:25%;">
-			<h3>Historia</h3>
-				<c:forEach items="${requestScope.history}" var="event" varStatus="loopCounter">
-					<c:out value="${event}"/><br/>
-				</c:forEach>
-			</aside>
 	</body>
 </html>

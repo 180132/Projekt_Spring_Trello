@@ -7,7 +7,7 @@ public class History {
 	private ArrayList<String> activities;
 	
 	public History() {
-		activities = new ArrayList<>();
+		activities = new ArrayList<String>();
 	}
 	
 	public enum ActivityType {

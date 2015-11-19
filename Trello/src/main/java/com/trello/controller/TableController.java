@@ -35,6 +35,7 @@ public class TableController extends AbstractController{
 	public ModelAndView viewTables(Model model) {
 		Map<String, Object> map = new HashMap();
 		map.put("tables", (List<Table>)tableService.getTables());
+		map.put("history", (List<String>) tableService.getHistory().getActivities());
 		return new ModelAndView("tableList", map);
 	}
 	
@@ -42,6 +43,7 @@ public class TableController extends AbstractController{
 	public ModelAndView getHistory(Model model) {
 		Map<String, Object> map = new HashMap();
 		map.put("history", (List<String>) tableService.getHistory().getActivities());
+		map.put("tables", (List<Table>)tableService.getTables());
 		return new ModelAndView("tableList", map);
 	}
 	

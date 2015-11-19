@@ -76,6 +76,7 @@ public class TableController extends AbstractController{
 	 @RequestMapping(value="/tablePage/{tableIndex}/{tableName}")
      public ModelAndView tablePage(Model model, @PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName) {
              Map<String, Object> map = new HashMap();
+      		 map.put("history", (List<String>) tableService.getHistory().getActivities());
              map.put("lists", (List<TableList>)tableService.getTables().get(tableIndex).getLists());
              model.addAttribute("tableIndex", tableIndex);
              model.addAttribute("tableName", tableName);

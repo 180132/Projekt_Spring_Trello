@@ -29,6 +29,12 @@ Lists of "${tableName}" board:
 		</div>
 	</a>
 </br>
+	<aside style="float:right; width:35%;">
+	<h3>Historia</h3>
+		<c:forEach items="${requestScope.history}" var="event" varStatus="loopCounter">
+			<c:out value="${event}"/><br/>
+		</c:forEach>
+	</aside>
 	<c:forEach items="${requestScope.lists}" var="list" varStatus="loopCounter">
 		<div style = "width: 210px;
 					height: 110px;

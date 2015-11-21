@@ -21,7 +21,7 @@
     <mvc:annotation-driven />
     <mvc:default-servlet-handler />
     <mvc:resources mapping="/resources/**" location="/resources/" />
-    <mvc:resources mapping="/style/**" location="/WEB-INF/style/*" />
+    <mvc:resources mapping="/style/**" location="/style/*" />
 		
     <bean id="viewResolver"
     	class="org.springframework.web.servlet.view.InternalResourceViewResolver" >

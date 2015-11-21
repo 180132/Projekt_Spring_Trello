@@ -13,9 +13,9 @@
 		<link href="<c:url value= "/style/assets/todo.css" />" rel="stylesheet">
 		-->  
  
-        <link rel="stylesheet" type="text/css" href="lib/Bootstrap/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="lib/jQuery/jquery.ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="assets/todo.css" />
+        <link rel="stylesheet" type="text/css" href="/style/lib/Bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/style/lib/jQuery/jquery.ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/style/assets/todo.css" />
       
 	</head>
 	

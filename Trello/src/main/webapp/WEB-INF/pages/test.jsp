@@ -58,10 +58,10 @@
 			<script type="text/javascript" src="<c:url value="/style/lib/jQuery/jquery.ui.min.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/style/assets/todo.js"/>"></script>
 			-->
-			<script type="text/javascript" src="lib/jQuery/jquery.min.js"></script>
-			<script type="text/javascript" src="lib/Bootstrap/bootstrap.min.js"></script>
-			<script type="text/javascript" src="lib/jQuery/jquery.ui.min.js"></script>
-			<script type="text/javascript" src="assets/todo.js"></script>
+			<script type="text/javascript" src="style/lib/jQuery/jquery.min.js"></script>
+			<script type="text/javascript" src="style/lib/Bootstrap/bootstrap.min.js"></script>
+			<script type="text/javascript" src="style/lib/jQuery/jquery.ui.min.js"></script>
+			<script type="text/javascript" src="style/assets/todo.js"></script>
 			
 
 			<script type="text/javascript">

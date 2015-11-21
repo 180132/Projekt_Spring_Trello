@@ -13,9 +13,9 @@
 		<link href="<c:url value= "/style/assets/todo.css" />" rel="stylesheet">
 		-->  
  
-        <link rel="stylesheet" type="text/css" href="/style/lib/Bootstrap/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="/style/lib/jQuery/jquery.ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/style/assets/todo.css" />
+        <link rel="stylesheet" type="text/css" href="style/lib/Bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="style/lib/jQuery/jquery.ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="style/assets/todo.css" />
       
 	</head>
 	
@@ -52,16 +52,17 @@
 			<!--
 			<script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
 			-->
+			<!--
 			<script type="text/javascript" src="<c:url value="/style/lib/jQuery/jquery.min.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/style/lib/Bootstrap/bootstrap.min.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/style/lib/jQuery/jquery.ui.min.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/style/assets/todo.js"/>"></script>
-			<!--  
+			-->
 			<script type="text/javascript" src="lib/jQuery/jquery.min.js"></script>
 			<script type="text/javascript" src="lib/Bootstrap/bootstrap.min.js"></script>
 			<script type="text/javascript" src="lib/jQuery/jquery.ui.min.js"></script>
 			<script type="text/javascript" src="assets/todo.js"></script>
-			-->
+			
 
 			<script type="text/javascript">
 				$( "#datepicker" ).datepicker();

@@ -21,6 +21,7 @@
     <mvc:annotation-driven />
     <mvc:default-servlet-handler />
     <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/style/**" location="/WEB-INF/style/*" />
 		
     <bean id="viewResolver"
     	class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
@@ -32,15 +33,14 @@
         </property>
     </bean>
     
-       <bean name="tableServiceImpl" 
-		class="com.trello.service.TableServiceImpl" />
+    <bean name="tableServiceImpl" 
+		class="com.trello.service.TableServiceImpl" >
+	</bean>
 		
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
 		p:basename="classpath:/spring/messages" >
 		<property name="defaultEncoding" value="utf-8" />		
-	</bean>
-		
-		
+	</bean>		
 
 </beans>

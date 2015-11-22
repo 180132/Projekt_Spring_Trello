@@ -124,9 +124,39 @@ public class TableController extends AbstractController{
 	 @RequestMapping(value="/deleteCard/{tableIndex}/{listIndex}/{cardIndex}/{tableName}", method = RequestMethod.GET)
 	 public String deleteCard(@PathVariable("tableIndex") int tableIndex,
 			 				  @PathVariable("listIndex") int listIndex,
-			 				  @PathVariable("listIndex") int cardIndex,
+			 				  @PathVariable("cardIndex") int cardIndex,
 			 				  @PathVariable("tableName") String tableName) {
 		 tableService.deleteCard(tableIndex, listIndex, cardIndex);
+		 return "redirect:/tablePage/" + tableIndex + "/" + tableName;
+	 }
+	
+	 @RequestMapping(value="/addComment/{tableIndex}/{tableName}/{listIndex}/{cardIndex}/{commentText}", method = RequestMethod.GET)
+     public String addComment(@PathVariable("tableIndex") int tableIndex,
+    		 			   @PathVariable("tableName") String tableName,
+    		 			   @PathVariable("listIndex") int listIndex,
+    		 			   @PathVariable("cardIndex") int cardIndex,
+    		 			   @PathVariable("commentText") String commentText) {
+          tableService.addComment(tableIndex, listIndex, cardIndex, commentText);
+          return "redirect:/tablePage/" + tableIndex + "/" + tableName;
+     }
+     
+	 @RequestMapping(value="/editComment/{tableIndex}/{listIndex}/{cardIndex}/{commentIndex}/{newName}", method = RequestMethod.GET)
+	 public String editComment(@PathVariable("tableIndex") int tableIndex,
+								@PathVariable("listIndex") int listIndex,
+								@PathVariable("cardIndex") int cardIndex,
+								@PathVariable("commentIndex") int commentIndex,
+								@PathVariable("newName") String newName) {
+		 tableService.editComment(tableIndex, listIndex, cardIndex, commentIndex, newName);
+		 return "redirect:/tablePage/" + tableIndex;
+	 }
+	
+	 @RequestMapping(value="/deleteComment/{tableIndex}/{listIndex}/{cardIndex}/{commentIndex}/{tableName}", method = RequestMethod.GET)
+	 public String deleteComment(@PathVariable("tableIndex") int tableIndex,
+				 				  @PathVariable("listIndex") int listIndex,
+				 				  @PathVariable("cardIndex") int cardIndex,
+				 				  @PathVariable("commentIndex") int commentIndex,
+				 				  @PathVariable("tableName") String tableName) {
+		 tableService.deleteComment(tableIndex, listIndex, cardIndex, commentIndex);
 		 return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	 }
 	

@@ -1,5 +1,6 @@
 package com.trello.service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -76,6 +77,22 @@ public class TableServiceImpl implements TableService{
 	public void deleteCard(int tableIndex, int listIndex, int cardIndex) {
 		history.addActivity(ActivityType.CARD_DELETION, tables.get(tableIndex).getName(), tables.get(tableIndex).getLists().get(listIndex).getName(), tables.get(tableIndex).getLists().get(listIndex).getCards().get(cardIndex).getName());
 		tables.get(tableIndex).deleteCard(listIndex, cardIndex);
+	}
+	
+	public ArrayList<String> getComments(int tableIndex, int listIndex, int cardIndex) {
+		return tables.get(tableIndex).getComments(listIndex, cardIndex);
+	}
+
+	public void addComment(int tableIndex, int listIndex, int cardIndex, String commentText) {
+		tables.get(tableIndex).addComment(listIndex, cardIndex, commentText);
+	}
+	
+	public void editComment(int tableIndex, int listIndex, int cardIndex, int commentIndex, String commentText) {
+		tables.get(tableIndex).editComment(listIndex, cardIndex, commentIndex, commentText);
+	}
+	
+	public void deleteComment(int tableIndex, int listIndex, int cardIndex, int commentIndex) {
+		tables.get(tableIndex).deleteComment(listIndex, cardIndex, commentIndex);
 	}
 
 	public History getHistory() {

@@ -40,5 +40,21 @@ public class TableList {
 	public void setCards(List<Card> cards) {
 		this.cards = cards;
 	}
+	
+	public ArrayList<String> getComments(int cardIndex) {
+		return cards.get(cardIndex).getComments();
+	}
+
+	public void addComment(int cardIndex, String commentText) {
+		cards.get(cardIndex).addComment(commentText);
+	}
+	
+	public void editComment(int cardIndex, int commentIndex, String commentText) {
+		cards.get(cardIndex).editComment(commentIndex, commentText);
+	}
+	
+	public void deleteComment(int cardIndex, int commentIndex) {
+		cards.get(cardIndex).deleteComment(commentIndex);
+	}
 }
 

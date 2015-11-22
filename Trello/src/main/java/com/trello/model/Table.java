@@ -77,4 +77,20 @@ public class Table {
 	public void deleteCard(int listIndex, int cardIndex) {
 		lists.get(listIndex).deleteCard(cardIndex);
 	}
+	
+	public ArrayList<String> getComments(int listIndex, int cardIndex) {
+		return lists.get(listIndex).getComments(cardIndex);
+	}
+
+	public void addComment(int listIndex, int cardIndex, String commentText) {
+		lists.get(listIndex).addComment(cardIndex, commentText);
+	}
+	
+	public void editComment(int listIndex, int cardIndex, int commentIndex, String commentText) {
+		lists.get(listIndex).editComment(cardIndex, commentIndex, commentText);
+	}
+	
+	public void deleteComment(int listIndex, int cardIndex, int commentIndex) {
+		lists.get(listIndex).deleteComment(cardIndex, commentIndex);
+	}
 }

@@ -4,29 +4,31 @@
 <html>
 	<head>
 	    <title>AngelPrime to-do List</title>
-		<!--
-		<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
-		-->
-		<!-- 
-		<link href="<c:url value="/style/lib/Bootstrap/bootstrap.min.css" />" rel="stylesheet">
-		<link href="<c:url value= "/style/lib/jQuery/jquery.ui.min.css" />" rel="stylesheet">
-		<link href="<c:url value= "/style/assets/todo.css" />" rel="stylesheet">
-		-->  
- 
         <link rel="stylesheet" type="text/css" href="style/lib/Bootstrap/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="style/lib/jQuery/jquery.ui.min.css" />
         <link rel="stylesheet" type="text/css" href="style/assets/todo.css" />
       
 	</head>
 	
-	<body class = "well">
+	<body style = "	background-color: #3385FF;
+					height: 100%;">
+		<header style = "background-color: blue;
+							color: white;
+							text-algin: center;
+							width: 100%;
+							height: 50px;
+							border-radius: 10px;">
+			<center><h3>Trello</h3></center>
+		</header>
 		<div id = "container">
-		
-			<div id="header"> To Do List </div>
 	
 			<div class="task-list task-container" id="pending">
-				<h3>Pending</h3>
-				<!-- Sample task added manually to check look -->
+				<h3>Plan</h3>
+
+			</div>
+			
+			<div class="task-list task-container" id="completed">
+				<h3>Done</h3>
 
 			</div>
 
@@ -43,21 +45,13 @@
 				<input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();"/>
 
 				<div id="delete-div">
-					Drag Here to Delete
+					Drop Here to Delete
 				</div>
 			</div>
 			
 			<div style="clear:both;"></div>
 			
-			<!--
-			<script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
-			-->
-			<!--
-			<script type="text/javascript" src="<c:url value="/style/lib/jQuery/jquery.min.js"/>"></script>
-			<script type="text/javascript" src="<c:url value="/style/lib/Bootstrap/bootstrap.min.js"/>"></script>
-			<script type="text/javascript" src="<c:url value="/style/lib/jQuery/jquery.ui.min.js"/>"></script>
-			<script type="text/javascript" src="<c:url value="/style/assets/todo.js"/>"></script>
-			-->
+
 			<script type="text/javascript" src="style/lib/jQuery/jquery.min.js"></script>
 			<script type="text/javascript" src="style/lib/Bootstrap/bootstrap.min.js"></script>
 			<script type="text/javascript" src="style/lib/jQuery/jquery.ui.min.js"></script>

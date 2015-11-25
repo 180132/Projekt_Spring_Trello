@@ -5,46 +5,34 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="style/assets/tableList.css" />
 		<title>Insert title here</title>
 	</head>
-	<body style = "background-color: #3385FF">
-		<header style = "background-color: #1A1AFF;
-						color: white;
-						text-algin: center;
-						width: 100%;
-						height: 50px;
-						border-radius: 10px;">
+	<body class = "body_table">
+		<header class = "header_table">
 			<center>Trello</center>
 		</header>
 		
 			<a href="/Trello/addTable/Board name">
-				<div style = "width: 200px;
-						height: 25px;
-						background-color: #FF1A1A;
-						border-radius: 10px;">
+				<div class = "add_button">
 
 						<center>ADD Board</center>
 				</div>
 			</a>
-			<aside style="float:right; width:35%;">
-			<h3>Historia</h3>
-				<c:forEach items="${requestScope.history}" var="event" varStatus="loopCounter">
-					<c:out value="${event}"/><br/>
-				</c:forEach>
+			<aside class = "history_panel">
+				<h3>Historia</h3>
+					<c:forEach items="${requestScope.history}" var="event" varStatus="loopCounter">
+						<c:out value="${event}"/><br/>
+					</c:forEach>
 			</aside>
-			<section>
+			<section class = "main_panel">
 				<c:forEach items="${requestScope.tables}" var="table" varStatus="loopCounter">
-					<div style = "width: 210px;
-								height: 110px;
-								float: left;">
+					<div class = "list_button_shadow">
 						
 						<a href="/Trello/tablePage/${loopCounter.index}/${table.name}">					
-							<div style = "width: 200px;
-									height: 100px;
-									background-color: red;">								
+							<div class = "list_button">								
 	
-								<c:out value="${table.name}"/>
-	
+								<c:out value="${table.name}"/>	
 								<a href="/Trello/deleteTable/${loopCounter.index}"><button>Delete</button></a>
 								
 							</div>

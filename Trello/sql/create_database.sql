@@ -7,7 +7,7 @@ create table account (
     first_name varchar(50) not null,
     last_name varchar(50) not null,
     email varchar(50) not null,
-    password varchar(64), -- varchar(64) to accommodate SHA-256 hashes
+    password varchar(64),
     marketing_ok boolean not null,
     accept_terms boolean not null,
     enabled boolean not null,

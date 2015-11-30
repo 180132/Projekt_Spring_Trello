@@ -1,11 +1,11 @@
 package com.trello.controller;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
+import com.trello.domain.Account;
 import com.trello.model.AccountForm;
+import com.trello.service.AccountService;
 
 @Controller
+
 
 public class AccountController extends AbstractController{
 	
@@ -42,6 +45,9 @@ public class AccountController extends AbstractController{
 	}
 	
 	*/
+
+	//@Autowired private AccountService accountService;
+
 	private static final String VN_REG_FORM = "registrationForm";
 	private static final String VN_REG_OK = "redirect:/viewTables.html";
 	
@@ -53,6 +59,18 @@ public class AccountController extends AbstractController{
 		});
 		
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+	}
+	
+	private static Account toAccount(AccountForm form) {
+		Account account = new Account();
+		account.setUsername(form.getUsername());
+		account.setFirstName(form.getFirstName());
+		account.setLastName(form.getLastName());
+		account.setEmail(form.getEmail());
+		account.setMarketingOk(form.isMarketingOk());
+		account.setAcceptTerms(form.isAcceptTerms());
+		account.setEnabled(true);
+		return account;
 	}
 	
 	@RequestMapping(value = "/users", method=RequestMethod.GET)
@@ -68,8 +86,10 @@ public class AccountController extends AbstractController{
 			BindingResult result) {
 		
 		convertPasswordError(result);
+		accountService.registerAccount(toAccount(form), form.getPassword(), result);
 		return (result.hasErrors() ? VN_REG_FORM : VN_REG_OK);
 	}
+	
 	
 	private static void convertPasswordError(BindingResult result) {
 		for (ObjectError error : result.getGlobalErrors()) {

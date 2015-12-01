@@ -26,7 +26,7 @@ import com.trello.service.AccountService;
 @Controller
 
 
-public class AccountController extends AbstractController{
+public class AccountController{
 	
 	/*private static final Logger log = LoggerFactory.getLogger(AccountController.class);
 	
@@ -86,7 +86,7 @@ public class AccountController extends AbstractController{
 			BindingResult result) {
 		
 		convertPasswordError(result);
-		accountService.registerAccount(toAccount(form), form.getPassword(), result);
+		//accountService.registerAccount(toAccount(form), form.getPassword(), result);
 		return (result.hasErrors() ? VN_REG_FORM : VN_REG_OK);
 	}
 	
@@ -102,12 +102,5 @@ public class AccountController extends AbstractController{
 		}
 	}
 
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 
 }

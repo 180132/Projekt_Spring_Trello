@@ -3,6 +3,8 @@ package com.trello.model;
 import java.util.ArrayList;
 
 public class Card {
+	private int id;
+	private int listId;
 	private String name;
 	private String description;
 	private ArrayList<String> comments;
@@ -13,6 +15,28 @@ public class Card {
 		this.comments = new ArrayList<String>();
 	}
 	
+
+	public int getId() {
+		return id;
+	}
+	
+	public int getListId() {
+		return listId;
+	}
+
+
+	public void setListId(int listId) {
+		this.listId = listId;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setComments(ArrayList<String> comments) {
+		this.comments = comments;
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -55,17 +55,10 @@
 	        <br>
 	        	<c:forEach items="${list.cards}" var="card" varStatus="nr">
 	        		<tr>
-	      				<td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">${card.name}</button></td><a href="/Trello/deleteCard/${tableIndex }/${loopCounter.index}/${nr }/nazwa"><button>Delete Card</button></a>
+	      				<td><button type="button" class="open-AddBookDialog btn btn-default" data-listId = "${loopCounter.index}" data-id="${nr.index }" data-toggle="modal" data-target="#myModal${nr.index}">${card.name}</button></td><a href="/Trello/deleteCard/${tableIndex }/${loopCounter.index}/${nr.index}/${tableName}"><button>Delete Card</button></a>
 	        		</tr>
 	        		<br>
-				</c:forEach>
-			</div>
-		</c:forEach>
-		<div class="container">
-			  
-			  
-			  <!-- Modal -->
-			  <div class="modal fade" id="myModal" role="dialog">
+	        		<div class="modal fade" id="myModal${nr.index }" role="dialog">
 			    <div class="modal-dialog">
 			    
 			      <!-- Modal content-->
@@ -75,18 +68,33 @@
 			          <h4 class="modal-title">Komentarze</h4>
 			        </div>
 			        <div class="modal-body">
-			          <h5>Dodaj komentarz</h5>
+				        <div class="panel panel-default">
+				          <c:forEach items="${card.comments}" var="comment" varStatus="loop">
+				          	<div class="panel-heading">${comment}"</div>
+				          </c:forEach>
+			          </div>
 			           <textarea class="form-control" rows="5" id="comment"></textarea>
 			        </div>
+			        
 			        <div class="modal-footer">
-			          <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>	
+			          <a href="/Trello/addComment/${tableIndex}/${tableName}/${loopCounter.index}/${nr.index}/komentarz "><button type="button" class="btn btn-default">Save</button></a>	
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 			        </div>
 			      </div>
 			      
 			    </div>
 			  </div>
-  
-</div>
+				</c:forEach>
+			</div>
+		</c:forEach>
+		<script type="text/javascript">
+		$(document).on("click", ".open-AddBookDialog", function () {
+		     var myBookId = $(this).data('id');
+		     $(".modal-body #bookId").val( myBookId );
+		    $('#myModal').modal('show');
+		});
+
+		</script>
+		
 	</body>
 </html>

@@ -4,6 +4,6 @@
 <title>webapp</title>
 </head>
 <body>
-<c:redirect url="/test"/>
+<c:redirect url="/users"/>
 </body>
 </html>

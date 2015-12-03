@@ -78,7 +78,7 @@ public class Table {
 		lists.get(listIndex).deleteCard(cardIndex);
 	}
 	
-	public ArrayList<String> getComments(int listIndex, int cardIndex) {
+	public ArrayList<Comment> getComments(int listIndex, int cardIndex) {
 		return lists.get(listIndex).getComments(cardIndex);
 	}
 

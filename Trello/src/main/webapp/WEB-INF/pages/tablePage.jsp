@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -70,13 +71,22 @@
 			        <div class="modal-body">
 				        <div class="panel panel-default">
 				          <c:forEach items="${card.comments}" var="comment" varStatus="loop">
-				          	<div class="panel-heading">${comment}</div>
+				          	<div class="panel-heading"><c:out value="${comment.date}"/>&nbsp;-&nbsp;<c:out value="${comment.name}"/></div>
 				          </c:forEach>
 			          </div>
+			          
 			           <form method="post" action="/Trello/addComment/${tableIndex}/${tableName}/${loopCounter.index}/${nr.index}">
 	      						<textarea class="form-control" id="commentary" name="commentary" ></textarea>
 	      						<button type="submit" class="btn btn-default">Save</button>
   						</form>
+  						<form:form method="POST" commandName="fileUploadForm" enctype="multipart/form-data">
+						<form:errors path="*" cssClass="errorblock" element="div" />
+							Please select a file to upload : <input type="file"  name="file" />
+							<input type="submit" class="btn btn-default" value="upload" />
+							<span><form:errors path="file" cssClass="error" />
+						</span>
+
+						</form:form>
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

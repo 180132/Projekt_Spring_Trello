@@ -1,18 +1,19 @@
 package com.trello.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Card {
 	private int id;
 	private int listId;
 	private String name;
 	private String description;
-	private ArrayList<String> comments;
+	private ArrayList<Comment> comments;
 		
 	public Card(String cardName) {
 		super();
 		this.name = cardName;
-		this.comments = new ArrayList<String>();
+		this.comments = new ArrayList<Comment>();
 	}
 	
 
@@ -33,7 +34,7 @@ public class Card {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setComments(ArrayList<String> comments) {
+	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
 	}
 
@@ -53,16 +54,16 @@ public class Card {
 		this.description = description;
 	}
 	
-	public ArrayList<String> getComments() {
+	public ArrayList<Comment> getComments() {
 		return comments;
 	}
 
 	public void addComment(String commentText) {
-		comments.add(commentText);
+		comments.add(new Comment(commentText, new Date().toString()));
 	}
 	
 	public void editComment(int commentIndex, String commentText) {
-		comments.set(commentIndex, commentText);
+		//comments.set(commentIndex, commentText);
 	}
 	
 	public void deleteComment(int commentIndex) {

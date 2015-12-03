@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.trello.model.Card;
+import com.trello.model.Comment;
 import com.trello.model.History;
 import com.trello.model.History.ActivityType;
 import com.trello.model.Table;
@@ -79,7 +80,7 @@ public class TableServiceImpl implements TableService{
 		tables.get(tableIndex).deleteCard(listIndex, cardIndex);
 	}
 	
-	public ArrayList<String> getComments(int tableIndex, int listIndex, int cardIndex) {
+	public ArrayList<Comment> getComments(int tableIndex, int listIndex, int cardIndex) {
 		return tables.get(tableIndex).getComments(listIndex, cardIndex);
 	}
 

@@ -3,24 +3,26 @@ package com.trello.model;
 import java.util.Date;
 
 public class Comment {
-	public String text;
-	public Date creationDate;
-	
-	public Comment(String text, Date creationDate) {
+	public String name;
+	public String date;
+	public Comment(String name, String date) {
 		super();
-		this.text = text;
-		this.creationDate = creationDate;
+		this.name = name;
+		this.date = date;
 	}
-	public String getText() {
-		return text;
+	public String getName() {
+		return name;
 	}
-	public void setText(String text) {
-		this.text = text;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Date getCreationDate() {
-		return creationDate;
+	public String getDate() {
+		String[] splitDate = date.split(" ");
+		return splitDate[2] + " " + splitDate[1] + " " + splitDate[5] + " " + splitDate[3];
 	}
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setDate(String date) {
+		this.date = date;
 	}
+	
+
 }

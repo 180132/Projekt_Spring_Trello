@@ -41,7 +41,7 @@ public class TableList {
 		this.cards = cards;
 	}
 	
-	public ArrayList<String> getComments(int cardIndex) {
+	public ArrayList<Comment> getComments(int cardIndex) {
 		return cards.get(cardIndex).getComments();
 	}
 

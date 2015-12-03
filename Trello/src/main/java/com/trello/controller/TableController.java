@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ import com.trello.model.Table;
 import com.trello.model.Table.TableVisibility;
 import com.trello.model.TableList;
 import com.trello.service.TableServiceImpl;
+
 
 
 @Controller
@@ -80,6 +82,7 @@ public class TableController extends AbstractController{
              map.put("lists", (List<TableList>)tableService.getTables().get(tableIndex).getLists());
              model.addAttribute("tableIndex", tableIndex);
              model.addAttribute("tableName", tableName);
+             model.addAttribute("commentary", new String());
              return new ModelAndView("tablePage", map);
      }
     
@@ -130,13 +133,12 @@ public class TableController extends AbstractController{
 		 return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	 }
 	
-	 @RequestMapping(value="/addComment/{tableIndex}/{tableName}/{listIndex}/{cardIndex}/{commentText}", method = RequestMethod.GET)
-     public String addComment(@PathVariable("tableIndex") int tableIndex,
+	 @RequestMapping(value="/addComment/{tableIndex}/{tableName}/{listIndex}/{cardIndex}", method = RequestMethod.POST)
+     public String addComment(@ModelAttribute("commentary") String commentary, @PathVariable("tableIndex") int tableIndex,
     		 			   @PathVariable("tableName") String tableName,
     		 			   @PathVariable("listIndex") int listIndex,
-    		 			   @PathVariable("cardIndex") int cardIndex,
-    		 			   @PathVariable("commentText") String commentText) {
-          tableService.addComment(tableIndex, listIndex, cardIndex, commentText);
+    		 			   @PathVariable("cardIndex") int cardIndex) {
+          tableService.addComment(tableIndex, listIndex, cardIndex, commentary);
           return "redirect:/tablePage/" + tableIndex + "/" + tableName;
      }
      
@@ -159,6 +161,7 @@ public class TableController extends AbstractController{
 		 tableService.deleteComment(tableIndex, listIndex, cardIndex, commentIndex);
 		 return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	 }
+	 
 	
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,

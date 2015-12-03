@@ -70,14 +70,15 @@
 			        <div class="modal-body">
 				        <div class="panel panel-default">
 				          <c:forEach items="${card.comments}" var="comment" varStatus="loop">
-				          	<div class="panel-heading">${comment}"</div>
+				          	<div class="panel-heading">${comment}</div>
 				          </c:forEach>
 			          </div>
-			           <textarea class="form-control" rows="5" id="comment"></textarea>
+			           <form method="post" action="/Trello/addComment/${tableIndex}/${tableName}/${loopCounter.index}/${nr.index}">
+	      						<textarea class="form-control" id="commentary" name="commentary" ></textarea>
+	      						<button type="submit" class="btn btn-default">Save</button>
+  						</form>
 			        </div>
-			        
 			        <div class="modal-footer">
-			          <a href="/Trello/addComment/${tableIndex}/${tableName}/${loopCounter.index}/${nr.index}/komentarz "><button type="button" class="btn btn-default">Save</button></a>	
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 			        </div>
 			      </div>

@@ -197,12 +197,13 @@
 		</dependency>
 		
 		
-		<!-- MySQL Connector -->
+		<!--Postgresql Connector -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-		</dependency>	
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901.jdbc4</version>
+		</dependency>
+
 		
 
 	</dependencies>

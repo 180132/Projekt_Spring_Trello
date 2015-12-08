@@ -46,7 +46,7 @@ public class AccountController{
 	
 	*/
 
-	//@Autowired private AccountService accountService;
+	@Autowired private AccountService accountService;
 
 	private static final String VN_REG_FORM = "registrationForm";
 	private static final String VN_REG_OK = "redirect:/viewTables.html";
@@ -68,7 +68,6 @@ public class AccountController{
 		account.setLastName(form.getLastName());
 		account.setEmail(form.getEmail());
 		account.setMarketingOk(form.isMarketingOk());
-		account.setAcceptTerms(form.isAcceptTerms());
 		account.setEnabled(true);
 		return account;
 	}
@@ -87,7 +86,12 @@ public class AccountController{
 		
 		convertPasswordError(result);
 		//accountService.registerAccount(toAccount(form), form.getPassword(), result);
-		return (result.hasErrors() ? VN_REG_FORM : VN_REG_OK);
+		if(result.hasErrors()){
+			return VN_REG_FORM;
+		}else{
+			accountService.registerAccount(toAccount(form), form.getPassword(), result);
+			return VN_REG_OK;
+		}
 	}
 	
 	

@@ -1,5 +1,5 @@
 package com.trello.service;
-/*
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 
 import com.trello.dao.AccountDao;
+import com.trello.dao.HbnAccountDao;
 import com.trello.domain.Account;
 
 
@@ -14,7 +15,7 @@ import com.trello.domain.Account;
 @Transactional(readOnly = true) //Domyslan definicja transakcji
 public class AccountServiceImpl implements AccountService{
 	
-	@Autowired AccountDao accountDao;
+	@Autowired HbnAccountDao accountDao;
 	
 	
 	//Sprawdzanie powialania nazwy usera
@@ -30,11 +31,12 @@ public class AccountServiceImpl implements AccountService{
 	public boolean registerAccount(Account account, String password, Errors errors) {
 		// TODO Auto-generated method stub
 		
-		validateUsername(account.getUsername(), errors);
-		return false;
+		//validateUsername(account.getUsername(), errors);
+		accountDao.create(account);
+		return true;
 	}
 	
 	
 
 }
-*/
+

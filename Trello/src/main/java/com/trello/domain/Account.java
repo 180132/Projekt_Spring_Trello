@@ -16,80 +16,78 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 
-@NamedQuery(
-		name = "findAccountByUsername",
-		query = "from Account where username = :username")
+
 
 
 @Entity
-@Table(name = "account")
+
 public class Account {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name= "id")
 	private Long id;
+	
+	@Column(name= "username")
 	private String username;
+	
+	@Column(name= "first_name")
 	private String firstName;
+	
+	@Column(name= "last_name")
 	private String lastName;
+	
+	@Column(name= "email")
 	private String email;
+	
+	@Column(name= "marketing_ok")
 	private boolean marketingOk = true;
-	private boolean acceptTerms = false;
+	
+	@Column(name= "enabled")
 	private boolean enabled = true;
+	
+	@Column(name= "date_created")
 	private Date dateCreated;
 	
 	
 	//=======Gettery=========/
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name= "id")
+	
+	
 	public long getId(){
 		return id;
 	}
 	
 	@NotNull
-	@Size(min = 1, max = 50)
-	@Column(name = "username")
 	public String getUsername() {
 		return username;
 	}
 	
 	@NotNull
-	@Size(min = 1, max = 50)
-	@Column(name = "first_name")
 	public String getFirstName() {
 		return firstName;
 	}
 	
 	@NotNull
-	@Size(min = 1, max = 50)
-	@Column(name = "last_name")
 	public String getLastName() {
 		return lastName;
 	}
 	
 	@NotNull
-	@Size(min = 6, max = 50)
-	@Email
-	@Column(name = "email")
 	public String getEmail() {
 		return email;
 	}
 	
-	@Column(name = "marketing_ok")
+	@NotNull
 	public boolean isMarketingOk() {
 		return marketingOk;
 	}
 	
-	@AssertTrue(message = "{account.acceptTerms.assertTrue.message}")
-	@Column(name = "accept_terms")
-	public boolean isAcceptTerms() {
-		return acceptTerms;
-	}
-	
-	@Column(name = "enabled")
+	@NotNull
 	public boolean isEnabled() {
 		return enabled;
 	}
 	
-	@Column(name = "date_created")
+	@NotNull
 	public Date getDateCreated() {
 		return dateCreated;
 	}
@@ -128,12 +126,6 @@ public class Account {
 
 	public void setMarketingOk(boolean marketingOk) {
 		this.marketingOk = marketingOk;
-	}
-
-
-
-	public void setAcceptTerms(boolean acceptTerms) {
-		this.acceptTerms = acceptTerms;
 	}
 
 

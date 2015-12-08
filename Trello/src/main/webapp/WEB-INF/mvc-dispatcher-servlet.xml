@@ -33,11 +33,7 @@
             <value>.jsp</value>
         </property>
     </bean>
-    
-    <bean name="tableServiceImpl" 
-		class="com.trello.service.TableServiceImpl" >
-	</bean>
-		
+    		
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
 		p:basename="classpath:/spring/messages" >

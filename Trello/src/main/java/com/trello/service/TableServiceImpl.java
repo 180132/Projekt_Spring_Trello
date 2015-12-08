@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.trello.model.Card;
 import com.trello.model.Comment;
 import com.trello.model.History;
@@ -11,6 +13,7 @@ import com.trello.model.History.ActivityType;
 import com.trello.model.Table;
 import com.trello.model.TableList;
 
+@Service
 public class TableServiceImpl implements TableService{
 	private List<Table> tables;
 	private History history;

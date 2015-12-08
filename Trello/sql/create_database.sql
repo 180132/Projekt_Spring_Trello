@@ -1,19 +1,33 @@
+-- Table: account
+-- Postgres database
+-- DROP TABLE account;
 
-drop table if exists account;
-
-create table account (
-    id int unsigned not null auto_increment primary key,
-    username varchar(50) unique not null,
-    first_name varchar(50) not null,
-    last_name varchar(50) not null,
-    email varchar(50) not null,
-    password varchar(64),
-    marketing_ok boolean not null,
-    accept_terms boolean not null,
-    enabled boolean not null,
-    date_created timestamp default 0,
-    date_modified timestamp default current_timestamp on update current_timestamp,
-    unique index account_idx_1 (username),
-    unique index account_idx_2 (email)
-) engine = InnoDb;
-
+CREATE TABLE account
+(
+  id integer NOT NULL,
+  username character varying(50) NOT NULL,
+  first_name character varying(50) NOT NULL,
+  last_name character varying(50) NOT NULL,
+  email character varying(50) NOT NULL,
+  password character varying(64),
+  marketing_ok boolean NOT NULL,
+  enabled boolean NOT NULL,
+  date_created timestamp without time zone DEFAULT now(),
+  date_modified timestamp without time zone DEFAULT now(),
+  CONSTRAINT account_pkey PRIMARY KEY (id),
+  CONSTRAINT account_username_key UNIQUE (username)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE account
+  OWNER TO postgres;
+  
+CREATE SEQUENCE hibernate_sequence
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE hibernate_sequence
+  OWNER TO postgres;

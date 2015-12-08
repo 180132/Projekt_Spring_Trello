@@ -13,8 +13,13 @@ import java.util.List;
 
 
 public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
-	@Autowired private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	private Class<T> domainClass;
+
+	
+	public AbstractHbnDao(SessionFactory sessionFactory){
+		this.sessionFactory = sessionFactory;
+	}
 	
 	protected Session getSession() {
 		return sessionFactory.getCurrentSession();
@@ -34,15 +39,13 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 
 	@Override
 	public void create(T t) {
-		
-
 		Method method = ReflectionUtils.findMethod(
 				getDomainClass(), "setDateCreated", new Class[] { Date.class });
 		if (method != null) {
 			try {
 				method.invoke(t, new Date());
 			} catch (Exception e) {
-
+				e.printStackTrace();
 			}
 		}
 		

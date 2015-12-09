@@ -49,10 +49,16 @@ public class Account {
 	@Column(name= "date_created")
 	private Date dateCreated;
 	
+	@Column(name= "password")
+	private String password;
 	
 	//=======Gettery=========/
 	
 	
+	public String getPassword() {
+		return password;
+	}
+
 	public long getId(){
 		return id;
 	}
@@ -93,6 +99,12 @@ public class Account {
 	}
 	
 	//=======Settery========/
+	
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	
 	@SuppressWarnings("unused")
 	public void setId(Long id){

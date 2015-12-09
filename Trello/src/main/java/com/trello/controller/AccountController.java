@@ -64,6 +64,7 @@ public class AccountController{
 	private static Account toAccount(AccountForm form) {
 		Account account = new Account();
 		account.setUsername(form.getUsername());
+		account.setPassword(form.getPassword());
 		account.setFirstName(form.getFirstName());
 		account.setLastName(form.getLastName());
 		account.setEmail(form.getEmail());

@@ -101,3 +101,4 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 	@Override
 	public boolean exists(Serializable id) { return (get(id) != null); }
 }
+

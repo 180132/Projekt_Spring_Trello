@@ -79,44 +79,13 @@
 	      						<textarea class="form-control" id="commentary" name="commentary" ></textarea>
 	      						<button type="submit" class="btn btn-default">Save</button>
   						</form>
-  						<!--
-  						<form:form method="POST" commandName="fileUploadForm" enctype="multipart/form-data">					
-						<form:errors path="*" cssClass="errorblock" element="div" />
-							Please select a file to upload : <input type="file"  name="file" />
-							<input type="submit" class="btn btn-default" value="upload" />
-							<span><form:errors path="file" cssClass="error" />
-						</span>						
-						-->
-						
-						<!--
-						<form method="post" enctype="multipart/form-data"
-							action="/Trello/upload/<%= request.getParameter("file_name")%>">
-							File to upload: <input type="file" name="file"><br /> Name: <input
-								type="text" name="file_name"><br /> <br /> <input type="submit"
-								value="Upload"> Press here to upload the file!
-						</form>
-						-->
-						
-						<!--				
-						<form:form method="POST" commandName="fileUploadForm"
-							enctype="multipart/form-data">
-					
-							<form:errors path="*" cssClass="errorblock" element="div" />
-					
-							Please select a file to upload : <input type="file" name="file" />
-							<input type="submit" value="upload" />
-							<span><form:errors path="file" cssClass="error" />
-							</span>
-						</form:form>
-						-->
+  						
 						<form method="POST" enctype="multipart/form-data"
-							action="/Trello/upload">
+							action="/Trello/upload/${tableIndex}/${tableName}">
 							File to upload: <input type="file" name="file"><br /> Name: <input
 								type="text" name="name"><br /> <br /> <input type="submit"
 								value="Upload"> Press here to upload the file!
-						</form>
-	
-						</form:form>
+						</form>	
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

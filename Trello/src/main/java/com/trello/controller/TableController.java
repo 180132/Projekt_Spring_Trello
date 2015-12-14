@@ -168,9 +168,11 @@ public class TableController extends AbstractController{
 		 return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	 }
 	 
-	 @RequestMapping(value="/upload", method=RequestMethod.POST)
-	    public /*@ResponseBody String*/ ModelAndView handleFileUpload(@RequestParam("name") String fileName,
-	    									   						  @RequestParam("file") MultipartFile file) {					 
+	 @RequestMapping(value="/upload/{tableIndex}/{tableName}", method=RequestMethod.POST)
+	    public ModelAndView handleFileUpload(@PathVariable("tableIndex") int tableIndex,
+											  @PathVariable("tableName") String tableName,
+											  @RequestParam("name") String fileName,
+					   						  @RequestParam("file") MultipartFile file) {					 
 		    if (!file.isEmpty()) {
 	            try {
 	                byte[] bytes = file.getBytes();
@@ -185,37 +187,8 @@ public class TableController extends AbstractController{
 	        	logger.debug("You failed to upload " + fileName + " because the file was empty.");
 	        }
 		    
-			Map<String, Object> map = new HashMap();
-			map.put("tables", (List<Table>)tableService.getTables());
-			map.put("history", (List<String>) tableService.getHistory().getActivities());
-			return new ModelAndView("tableList", map);
+		    return new ModelAndView("redirect:/tablePage/" + tableIndex + "/" + tableName);
 	 }
-	 
-
-	 /*
-		protected ModelAndView onSubmit(HttpServletRequest request,
-			HttpServletResponse response, Object command, BindException errors)
-			throws Exception {
-	 
-			FileUpload file = (FileUpload)command;
-			
-			//MultipartFile multipartFile = file.getFile();
-			logger.debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
-					+ "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
-					+ "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
-					+ "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
-			
-			//return "redirect:/tablePage/";
-			return new ModelAndView("FileUploadSuccess","fileName", "eclipse.ini");
-		}*/
-	 
-	/* @RequestMapping(value = "/uploadFile/{tableIndex}/{tableName}", method = RequestMethod.POST)
-	 public String uploadFile(//@RequestPart("meta-data") MetaData metadata,
-	         			      @RequestPart("file-data") MultipartFile file,
-	         			      @PathVariable("tableIndex") int tableIndex,
-	         			      @PathVariable("tableName") String tableName) {
-		 return "redirect:/tablePage/" + tableIndex + "/" + tableName; 
-	 }*/
 	
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,

@@ -1,5 +1,6 @@
 package com.trello.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,11 +10,13 @@ public class Card {
 	private String name;
 	private String description;
 	private ArrayList<Comment> comments;
+	private ArrayList<File> files;
 		
 	public Card(String cardName) {
 		super();
 		this.name = cardName;
 		this.comments = new ArrayList<Comment>();
+		this.files = new ArrayList<File>();
 	}
 	
 
@@ -68,5 +71,21 @@ public class Card {
 	
 	public void deleteComment(int commentIndex) {
 		comments.remove(commentIndex);
+	}
+	
+	public ArrayList<File> getFiles() {
+		return files;
+	}
+	
+	public ArrayList<String> getFileNames() {
+		ArrayList<String> fileNames = new ArrayList<>();
+		for(File file : files) {
+			fileNames.add(file.getName());
+		}
+		return fileNames;
+	}
+
+	public void addFile(File file) {
+		files.add(file);
 	}
 }

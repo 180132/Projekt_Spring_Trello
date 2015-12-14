@@ -3,6 +3,7 @@ package com.trello.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -167,18 +168,22 @@ public class TableController extends AbstractController{
 		 tableService.deleteComment(tableIndex, listIndex, cardIndex, commentIndex);
 		 return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	 }
-	 
-	 @RequestMapping(value="/upload/{tableIndex}/{tableName}", method=RequestMethod.POST)
+
+	 @RequestMapping(value="/upload/{tableIndex}/{tableName}/{listIndex}/{cardIndex}", method=RequestMethod.POST)
 	    public ModelAndView handleFileUpload(@PathVariable("tableIndex") int tableIndex,
+											  @PathVariable("listIndex") int listIndex,
+											  @PathVariable("cardIndex") int cardIndex,
 											  @PathVariable("tableName") String tableName,
 											  @RequestParam("name") String fileName,
 					   						  @RequestParam("file") MultipartFile file) {					 
 		    if (!file.isEmpty()) {
 	            try {
 	                byte[] bytes = file.getBytes();
-	                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fileName)));
+	                File uploadedFile = new File(fileName);
+	                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
 	                stream.write(bytes);
-	                stream.close();
+	                stream.close();	                
+	            	tableService.addFile(uploadedFile, tableIndex, listIndex, cardIndex);
 	                logger.debug("You successfully uploaded " + fileName + "!");
 	            } catch (Exception e) {
 	            	logger.debug("You failed to upload " + fileName + " => " + e.getMessage());
@@ -187,8 +192,20 @@ public class TableController extends AbstractController{
 	        	logger.debug("You failed to upload " + fileName + " because the file was empty.");
 	        }
 		    
-		    return new ModelAndView("redirect:/tablePage/" + tableIndex + "/" + tableName);
+		    Map<String, Object> map = new HashMap();
+			map.put("file_names", (List<String>) tableService.getFileNames(tableIndex, listIndex, cardIndex));
+		    return new ModelAndView("redirect:/tablePage/" + tableIndex + "/" + tableName, map);
 	 }
+	/*
+	 @RequestMapping(value="/getUploadedFileNames/{tableIndex}/{tableName}/{listIndex}/{cardIndex}")
+	 public ModelAndView getUploadedFileNames(@PathVariable("tableIndex") int tableIndex,
+											  @PathVariable("listIndex") int listIndex,
+											  @PathVariable("cardIndex") int cardIndex,
+											  @PathVariable("tableName") String tableName) {
+		 Map<String, Object> map = new HashMap();
+		 map.put("file_names", (List<String>) tableService.getFileNames(tableIndex, listIndex, cardIndex));
+		 return new ModelAndView("redirect:/tablePage/" + tableIndex + "/" + tableName, map);
+	 }*/
 	
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,

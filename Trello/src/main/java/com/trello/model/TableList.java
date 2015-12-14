@@ -1,5 +1,6 @@
 package com.trello.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,14 @@ public class TableList {
 	
 	public void deleteComment(int cardIndex, int commentIndex) {
 		cards.get(cardIndex).deleteComment(commentIndex);
+	}
+	
+	public ArrayList<String> getFileNames(int cardIndex) {
+		return cards.get(cardIndex).getFileNames();
+	}
+	
+	public void addFile(File file, int cardIndex) {
+		cards.get(cardIndex).addFile(file);
 	}
 }
 

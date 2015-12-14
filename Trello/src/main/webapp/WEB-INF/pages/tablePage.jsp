@@ -42,6 +42,7 @@
 				<c:out value="${event}"/><br/>
 			</c:forEach>
 		</aside>
+		
 		<c:forEach items="${requestScope.lists}" var="list" varStatus="loopCounter">
 			<div style = "width: 210px;
 					height: 150px;
@@ -81,11 +82,17 @@
   						</form>
   						
 						<form method="POST" enctype="multipart/form-data"
-							action="/Trello/upload/${tableIndex}/${tableName}">
+							action="/Trello/upload/${tableIndex}/${tableName}/${loopCounter.index}/${nr.index}">
 							File to upload: <input type="file" name="file"><br /> Name: <input
 								type="text" name="name"><br /> <br /> <input type="submit"
 								value="Upload"> Press here to upload the file!
-						</form>	
+						</form>
+						<aside style="float:right; width:35%;">
+							<h3>Uploaded files:</h3>
+							<c:forEach items="${requestScope.file_names}" var="event" varStatus="loopCounter">
+								<c:out value="${event}"/><br/>
+							</c:forEach>
+						</aside>	
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

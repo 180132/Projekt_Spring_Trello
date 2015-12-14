@@ -1,5 +1,6 @@
 package com.trello.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -98,7 +99,15 @@ public class TableServiceImpl implements TableService{
 	public void deleteComment(int tableIndex, int listIndex, int cardIndex, int commentIndex) {
 		tables.get(tableIndex).deleteComment(listIndex, cardIndex, commentIndex);
 	}
-
+	
+	public ArrayList<String> getFileNames(int tableIndex, int listIndex, int cardIndex) {
+		return tables.get(tableIndex).getFileNames(listIndex, cardIndex);
+	}
+	
+	public void addFile(File file, int tableIndex, int listIndex, int cardIndex) {
+		tables.get(tableIndex).addFile(file, listIndex, cardIndex);
+	}
+	
 	public History getHistory() {
 		return history;
 	}

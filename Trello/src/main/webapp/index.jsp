@@ -4,6 +4,6 @@
 <title>webapp</title>
 </head>
 <body>
-<c:redirect url="/login"/>
+<c:redirect url="/viewTables"/>
 </body>
 </html>

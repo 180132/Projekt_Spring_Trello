@@ -79,6 +79,7 @@
 			           <form method="post" action="/Trello/addComment/${tableIndex}/${tableName}/${loopCounter.index}/${nr.index}">
 	      						<textarea class="form-control" id="commentary" name="commentary" ></textarea>
 	      						<button type="submit" class="btn btn-default">Save</button>
+	      						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   						</form>
   						
 						<form method="POST" enctype="multipart/form-data"

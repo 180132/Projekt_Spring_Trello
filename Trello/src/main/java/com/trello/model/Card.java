@@ -12,11 +12,12 @@ public class Card {
 	private ArrayList<Comment> comments;
 	private ArrayList<File> files;
 		
-	public Card(String cardName) {
+	public Card(String cardName, int listId) {
 		super();
 		this.name = cardName;
 		this.comments = new ArrayList<Comment>();
 		this.files = new ArrayList<File>();
+		this.listId = listId;
 	}
 	
 

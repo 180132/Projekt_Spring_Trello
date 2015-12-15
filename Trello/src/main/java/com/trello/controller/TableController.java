@@ -95,7 +95,7 @@ public class TableController extends AbstractController{
     
      @RequestMapping(value="/addList/{tableIndex}/{tableName}/{tableListName}", method = RequestMethod.GET)
      public String addList(@PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName, @PathVariable("tableListName") String tableListName) {
-             tableService.addListToTable(tableIndex, new TableList(tableListName + " " + tableService.getTables().get(tableIndex).getLists().size()));
+             tableService.addListToTable(tableIndex, new TableList(tableListName + " " + tableService.getTables().get(tableIndex).getLists().size()) );
              return "redirect:/tablePage/" + tableIndex + "/" + tableName;
      }     
      
@@ -118,7 +118,7 @@ public class TableController extends AbstractController{
     		 			   @PathVariable("tableName") String tableName,
     		 			   @PathVariable("listIndex") int listIndex,
     		 			   @PathVariable("cardName") String cardName) {
-          tableService.addCardToList(tableIndex, listIndex, new Card(cardName + " " + tableService.getTables().get(tableIndex).getLists().get(listIndex).getCards().size()));
+          tableService.addCardToList(tableIndex, listIndex, new Card(cardName, listIndex));
           return "redirect:/tablePage/" + tableIndex + "/" + tableName;
      }
      

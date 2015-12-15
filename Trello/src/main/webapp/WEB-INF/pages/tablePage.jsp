@@ -72,11 +72,11 @@
 			        <div class="modal-body">
 				        <div class="panel panel-default">
 				          <c:forEach items="${card.comments}" var="comment" varStatus="loop">
-				          	<div class="panel-heading"><c:out value="${comment.date}"/>&nbsp;-&nbsp;<c:out value="${comment.name}"/></div>
+				          	<div class="panel-heading"><c:out value="${comment.date}"/>&nbsp;-&nbsp;<c:out value="${comment.name}"/>&nbsp;<c:out value="${card.listId}"/></div>
 				          </c:forEach>
 			          </div>
 			          
-			           <form method="post" action="/Trello/addComment/${tableIndex}/${tableName}/${loopCounter.index}/${nr.index}">
+			           <form method="post" action="/Trello/addComment/${tableIndex}/${tableName}/${card.listId}/${nr.index}">
 	      						<textarea class="form-control" id="commentary" name="commentary" ></textarea>
 	      						<button type="submit" class="btn btn-default">Save</button>
 	      						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

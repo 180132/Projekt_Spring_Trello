@@ -168,7 +168,7 @@ public class TableController extends AbstractController{
 		 tableService.deleteComment(tableIndex, listIndex, cardIndex, commentIndex);
 		 return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	 }
-
+/*
 	 @RequestMapping(value="/upload/{tableIndex}/{tableName}/{listIndex}/{cardIndex}", method=RequestMethod.POST)
 	    public ModelAndView handleFileUpload(@PathVariable("tableIndex") int tableIndex,
 											  @PathVariable("listIndex") int listIndex,
@@ -196,7 +196,7 @@ public class TableController extends AbstractController{
 			map.put("file_names", (List<String>) tableService.getFileNames(tableIndex, listIndex, cardIndex));
 		    return new ModelAndView("redirect:/tablePage/" + tableIndex + "/" + tableName, map);
 	 }
-	/*
+
 	 @RequestMapping(value="/getUploadedFileNames/{tableIndex}/{tableName}/{listIndex}/{cardIndex}")
 	 public ModelAndView getUploadedFileNames(@PathVariable("tableIndex") int tableIndex,
 											  @PathVariable("listIndex") int listIndex,

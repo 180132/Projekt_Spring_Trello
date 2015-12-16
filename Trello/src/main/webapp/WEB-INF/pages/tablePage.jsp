@@ -83,10 +83,10 @@
   						</form>
   						
 						<form method="POST" enctype="multipart/form-data"
-							action="/Trello/upload/${tableIndex}/${tableName}/${loopCounter.index}/${nr.index}?${_csrf.parameterName}=${_csrf.token}">
-							File to upload: <input type="file" name="file"><br /> Name: <input
-								type="text" name="name"><br /> <br /> <input type="submit"
-								value="Upload"> Press here to upload the file!
+							action="/Trello/upload/${tableIndex}/${tableName}/${card.listId}/${nr.index}?${_csrf.parameterName}=${_csrf.token}">
+							File to upload: <input type="file" name="file"><br /> 
+							Name: <input type="text" name="name"><br /> <br />
+							<input type="submit" value="Upload"> Press here to upload the file!
 								
 						</form>
 						<aside style="float:right; width:35%;">

@@ -49,7 +49,7 @@ public class AccountController{
 	@Autowired private AccountService accountService;
 
 	private static final String VN_REG_FORM = "registrationForm";
-	private static final String VN_REG_OK = "redirect:/viewTables.html";
+	private static final String VN_REG_OK = "redirect:/login.html";
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

@@ -6,19 +6,22 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="style/assets/tableList.css" />
+		<link rel="stylesheet" type="text/css" href="style/lib/Bootstrap/bootstrap.min.css" />
 		<title>Insert title here</title>
 	</head>
 	<body class = "body_table">
 		<header class = "header_table">
-			<center>Trello</center>
+			<center>
+				<h3>Trello</h3>
+			</center>
 		</header>
 		
-			<a href="/Trello/addTable/Board name">
+			<h5><a href="/Trello/addTable/Board name" style="color: white">
 				<div class = "add_button">
 
 						<center>ADD Board</center>
 				</div>
-			</a>
+			</a></h5>
 			<aside class = "history_panel">
 				<h3>Historia</h3>
 					<c:forEach items="${requestScope.history}" var="event" varStatus="loopCounter">
@@ -29,14 +32,14 @@
 				<c:forEach items="${requestScope.tables}" var="table" varStatus="loopCounter">
 					<div class = "list_button_shadow">
 						
-						<a href="/Trello/tablePage/${loopCounter.index}/${table.name}">					
+						<center><a href="/Trello/tablePage/${loopCounter.index}/${table.name}" style="color: white">
 							<div class = "list_button">								
 	
-								<c:out value="${table.name}"/>	
-								<a href="/Trello/deleteTable/${loopCounter.index}"><button>Delete</button></a>
+								<h4><c:out value="${table.name}"/></h4>
+								<center><a href="/Trello/deleteTable/${loopCounter.index}"><button type="button" class="btn btn-primary">Delete</button></a></center>
 								
 							</div>
-						</a>
+						</a></center>
 					</div>
 				</c:forEach>
 			</section>

@@ -47,7 +47,7 @@
 		style="background-color: blue; color: white; text-algin: center; width: 100%; height: 50px; border-radius: 10px;">
 		<center>
 			<h3>Trello</h3>
-		</center>
+		</center>		
 	</header>
 
 
@@ -75,15 +75,15 @@
 					<td><input type='password' name='password' /></td>
 				</tr>
 				<tr>
-					<td colspan='2'><input name="submit" type="submit"
-						value="submit" /></td>
+					<td colspan='2'><input name="submit" type="submit" class="btn btn-primary" value="Login" /></td>
 				</tr>
 			</table>
 
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
-
+			
 		</form>
+		<a href="/Trello/users"><button type="button" class="btn btn-primary">Registration</button></a>
 	</div>
 
 </body>

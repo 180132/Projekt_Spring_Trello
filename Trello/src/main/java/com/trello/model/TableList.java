@@ -5,14 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TableList {
+	public int id;
 	public String name;
 	private List<Card> cards;
 
-	public TableList(String tableListName) {
+	public TableList(String tableListName, int id) {
 		super();
 		this.name = tableListName;
 		this.cards = new ArrayList<Card>();
+		this.id = id;
 	}
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 
 	public String getName() {
 		return name;

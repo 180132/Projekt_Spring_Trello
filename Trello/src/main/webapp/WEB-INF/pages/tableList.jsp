@@ -7,6 +7,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="style/assets/tableList.css" />
 		<link rel="stylesheet" type="text/css" href="style/lib/Bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<title>Insert title here</title>
 	</head>
 	<body class = "body_table">
@@ -15,13 +18,12 @@
 				<h3>Trello</h3>
 			</center>
 		</header>
-		
-			<h5><a href="/Trello/addTable/Board name" style="color: white">
-				<div class = "add_button">
-
-						<center>ADD Board</center>
-				</div>
-			</a></h5>
+		<form method="post" action="/Trello/addTable">
+	      						<input class="form-control" style="width:12%;"  id="boardName" name="boardName" ></input>
+	      						<button type="submit"  class="btn btn-default">Add Board</button>
+	      						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  						</form>
+			
 			<aside class = "history_panel">
 				<h3>Historia</h3>
 					<c:forEach items="${requestScope.history}" var="event" varStatus="loopCounter">
@@ -44,4 +46,5 @@
 				</c:forEach>
 			</section>
 	</body>
+	
 </html>

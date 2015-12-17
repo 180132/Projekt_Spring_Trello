@@ -56,9 +56,9 @@ public class TableController extends AbstractController{
 		return new ModelAndView("tableList", map);
 	}
 	
-	@RequestMapping(value="/addTable/{tableName}")
-	public String addTable(@PathVariable("tableName") String tableName) {
-		tableService.addTable(new Table(tableName + " " + tableService.getTables().size(), TableVisibility.PRIVATE));
+	@RequestMapping(value="/addTable")
+	public String addTable(@ModelAttribute("boardName") String tableName) {
+		tableService.addTable(new Table(tableName, TableVisibility.PRIVATE));
 		
 		if(logger.isDebugEnabled()){
 			logger.debug("\"" + tableName + "\" board has been successfully added.");
@@ -93,9 +93,9 @@ public class TableController extends AbstractController{
              return new ModelAndView("tablePage", map);
      }
     
-     @RequestMapping(value="/addList/{tableIndex}/{tableName}/{tableListName}", method = RequestMethod.GET)
-     public String addList(@PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName, @PathVariable("tableListName") String tableListName) {
-             tableService.addListToTable(tableIndex, new TableList(tableListName + " " + tableService.getTables().get(tableIndex).getLists().size()) );
+     @RequestMapping(value="/addList/{tableIndex}/{tableName}", method = RequestMethod.POST)
+     public String addList(@ModelAttribute("listName") String tableListName, @PathVariable("tableIndex") int tableIndex, @PathVariable("tableName") String tableName) {
+             tableService.addListToTable(tableIndex, new TableList(tableListName, tableService.getTables().get(tableIndex).getLists().size())); logger.info(tableIndex + " " + tableService.getTables().get(tableIndex).getLists().size());
              return "redirect:/tablePage/" + tableIndex + "/" + tableName;
      }     
      
@@ -113,11 +113,11 @@ public class TableController extends AbstractController{
 		return "redirect:/tablePage/" + tableIndex + "/" + tableName;
 	}
 	
-	 @RequestMapping(value="/addCard/{tableIndex}/{tableName}/{listIndex}/{cardName}", method = RequestMethod.GET)
-     public String addCard(@PathVariable("tableIndex") int tableIndex,
+	 @RequestMapping(value="/addCard/{tableIndex}/{tableName}/{listIndex}", method = RequestMethod.POST)
+     public String addCard(@ModelAttribute("cardName") String cardName,
+    		 			   @PathVariable("tableIndex") int tableIndex,
     		 			   @PathVariable("tableName") String tableName,
-    		 			   @PathVariable("listIndex") int listIndex,
-    		 			   @PathVariable("cardName") String cardName) {
+    		 			   @PathVariable("listIndex") int listIndex) {
           tableService.addCardToList(tableIndex, listIndex, new Card(cardName, listIndex));
           return "redirect:/tablePage/" + tableIndex + "/" + tableName;
      }

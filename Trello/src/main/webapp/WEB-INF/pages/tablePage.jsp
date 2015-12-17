@@ -25,16 +25,31 @@
 		</header>
 		Lists of "${tableName}" board:
 		</br>
-		<a href="/Trello/addList/${tableIndex}/${tableName}/List name">
-			<div style = "width: 200px;
-						height: 25px;
-						background-color: red;
-						border-radius: 10px;">
-							
-				<center>ADD List</center>
-							
+			<!-- Trigger the modal with a button -->
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addListModal">Add List</button>
+			
+			<!-- Modal -->
+			<div id="addListModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Podaj nazwe listy</h4>
+			      </div>
+			      <form method="post" action="/Trello/addList/${tableIndex}/${tableName}">
+	      						<input class="form-control" id="listName" name="listName" ></input>
+	      						<button type="submit" class="btn btn-default">Save</button>
+	      						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  						</form>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			
+			  </div>
 			</div>
-		</a>
 		</br>
 		<aside style="float:right; width:35%;">
 			<h3>Historia</h3>
@@ -44,21 +59,46 @@
 		</aside>
 		
 		<c:forEach items="${requestScope.lists}" var="list" varStatus="loopCounter">
-			<div style = "width: 210px;
-					height: 150px;
-					float: left;">
-							
+			<div style = "width: 300px;
+					float: left;background-color:#0066CC; margin:2%; padding:5px; border-radius:5px;">
+						
 	      	<tr>
-	      		<td><c:out value="${list.name}"/></td>
+	      		<div style="color:white;font-size:18px;font-family:Arial;float:left;margin:3px;"><center><c:out value="${list.name}"/></center></div>
 	        </tr>
-	      	<a href="/Trello/deleteList/${tableIndex}/${tableName}/${loopCounter.index}"><button>Delete</button></a>
-	        </br>
-	        <a href="/Trello/addCard/${tableIndex }/${tableName}/${loopCounter.index}/nazwa"><button>Add Card</button></a>
-	        <br>
+	      	<a href="/Trello/deleteList/${tableIndex}/${tableName}/${list.id}"><button class="btn" style="float:left;margin:3px;">Delete</button></a>
+	       
+	        <!-- Trigger the modal with a button -->
+			<button type="button" class="btn" style="float:left;margin:3px;" data-toggle="modal" data-target="#addCardModal">Add Card</button>
+
+			<!-- Modal -->
+			<div id="addCardModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Podaj nazwe karty</h4>
+			      </div>
+			      <form method="post" action="/Trello/addCard/${tableIndex}/${tableName}/${list.id}">
+	      						<input class="form-control" id="cardName" name="cardName" ></input>
+	      						<button type="submit" class="btn btn-default">Save</button>
+	      						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  						</form>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			
+			  </div>
+			</div>
+	        <br><br>
 	        	<c:forEach items="${list.cards}" var="card" varStatus="nr">
+	        	<div style="border-radius:5px; background-color:#0099CC; margin-top:2px; padding:7px; height:50px;">
 	        		<tr>
-	      				<td><button type="button" class="open-AddBookDialog btn btn-default" data-listId = "${loopCounter.index}" data-id="${nr.index }" data-toggle="modal" data-target="#myModal${nr.index}">${card.name}</button></td><a href="/Trello/deleteCard/${tableIndex }/${loopCounter.index}/${nr.index}/${tableName}"><button>Delete Card</button></a>
+	      				<td><button type="button" class="open-AddBookDialog btn btn-default" data-listId = "${loopCounter.index}" data-id="${nr.index }" data-toggle="modal" data-target="#myModal${nr.index}">${card.name}</button></td><a href="/Trello/deleteCard/${tableIndex }/${loopCounter.index}/${nr.index}/${tableName}"><button style="float:right;"class="btn">Delete Card</button></a>
 	        		</tr>
+	        		</div>
 	        		<br>
 	        		<div class="modal fade" id="myModal${nr.index }" role="dialog">
 			    <div class="modal-dialog">
